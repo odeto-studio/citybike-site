@@ -4,7 +4,7 @@ Each island is a self-contained IIFE: it finds its `data-dcb-*` root, does nothi
 GSAP 3.12.5 + ScrollTrigger load once site-wide (cdnjs, before the islands). Every scroll-driven island honors `prefers-reduced-motion` and leaves the section readable with JS off.
 
 Mockup attributes (`data-why`, `data-tour`, ...) get the `dcb-` prefix on port: `data-why` becomes `data-dcb-why`.
-Source line refs are `mockup-v2/v2.js` and `mockup-v3/v3.js` as of 2026-10-29; port only after the section is locked in the v2 refinement pass.
+Source line refs are `mockup-v2/v2.js` and `mockup-v3/v3.js` as of 2026-10-29; port only after the section is locked in the v3 refinement pass.
 
 | Island | Attribute root | Pages | Source | Status |
 |---|---|---|---|---|

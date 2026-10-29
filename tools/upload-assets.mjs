@@ -14,7 +14,7 @@ const CSV = path.join(HERE, "webflow/assets.csv");
 const DRY = process.argv.includes("--dry");
 const SKIP = [/\.mp4$/, /\.ttf$/, /collectives\//, /sponsor-/, /blog-frames-/, /live-blog-before/, /ian-press/, /priority-spec-board/, /related\//];
 
-const lines = readFileSync(CSV, "utf8").trim().split("\n");
+const lines = readFileSync(CSV, "utf8").trim().split(/\r?\n/);
 const head = lines[0].split(",");
 const rows = lines.slice(1).map((l) => Object.fromEntries(l.split(",").map((v, i) => [head[i], v])));
 

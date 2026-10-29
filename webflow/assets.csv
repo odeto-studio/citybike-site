@@ -1,10 +1,10 @@
 file,kb,webflow_folder,used_on,webflow_asset_id
-mockup-v3/img/bike.webp,385,bike,(css/js) index.html,
+mockup-v3/img/bike.webp,385,bike,(css/js) index.html,6ae397b066f2eb73093e8368
 mockup/img/blog-frames-1.png,3193,misc,blog-post.html,
 mockup/img/blog-frames-2.png,2953,misc,blog-post.html,
 mockup/img/blog-frames-3.png,903,misc,blog-post.html,
-mockup/img/brand/drifters-wordmark_gold.png,34,brand,blog-post.html collectives.html download.html faq.html index.html sponsorship.html,
-mockup/img/brand/drifters-wordmark_white.png,30,brand,blog-post.html collectives.html download.html faq.html index.html sponsorship.html,
+mockup/img/brand/drifters-wordmark_gold.png,34,brand,blog-post.html collectives.html download.html faq.html index.html sponsorship.html,6ae397b038aa8cdca420275f
+mockup/img/brand/drifters-wordmark_white.png,30,brand,blog-post.html collectives.html download.html faq.html index.html sponsorship.html,6ae397b031247253caf8d79b
 mockup/img/collectives/a1a.svg,7,collectives,collectives.html,
 mockup/img/collectives/blvd.svg,7,collectives,collectives.html,
 mockup/img/collectives/city-experience.svg,10,collectives,collectives.html,
@@ -12,35 +12,35 @@ mockup/img/collectives/king-street.svg,8,collectives,collectives.html,
 mockup/img/collectives/lincolnville.svg,9,collectives,collectives.html,
 mockup/img/collectives/st-augustine.svg,7,collectives,collectives.html,
 mockup/img/collectives/uptown.svg,8,collectives,collectives.html,
-mockup/img/factory-frames.jpg,306,misc,index.html,
+mockup/img/factory-frames.jpg,306,misc,index.html,6ae397b05108c05608b658bc
 mockup/img/ian-press.png,690,misc,blog-post.html,
-mockup/img/ian/IMG_2650.jpg,724,film-and-photos,index.html,
-mockup/img/ian/IMG_9411.jpg,758,film-and-photos,collectives.html,
-mockup/img/ian/IMG_9926.jpg,785,film-and-photos,index.html,
-mockup/img/ian/IMG_9941.jpg,493,film-and-photos,sponsorship.html,
-mockup/img/ian/P1001743.jpg,803,film-and-photos,index.html,
-mockup/img/ian/hero-courtyard-poster.jpg,167,film-and-photos,index.html,
+mockup/img/ian/IMG_2650.jpg,724,film-and-photos,index.html,6ae397b138aa8cdca42027e0
+mockup/img/ian/IMG_9411.jpg,758,film-and-photos,collectives.html,6ae397b159e2207cefd753ef
+mockup/img/ian/IMG_9926.jpg,785,film-and-photos,index.html,6ae397b2ebf82a075817fc7f
+mockup/img/ian/IMG_9941.jpg,493,film-and-photos,sponsorship.html,6ae397b252d023bfb386ffad
+mockup/img/ian/P1001743.jpg,803,film-and-photos,index.html,6ae397b3f946907dd03dceaf
+mockup/img/ian/hero-courtyard-poster.jpg,167,film-and-photos,index.html,6ae397b43203729fc6cd45eb
 mockup/img/ian/hero-courtyard.mp4,6321,film-and-photos,index.html,
-mockup/img/ig/aviles-poster.jpg,169,film-and-photos,index.html,
-mockup/img/ig/factory-line.jpg,255,film-and-photos,index.html,
-mockup/img/ig/factory-racks.jpg,217,film-and-photos,index.html,
+mockup/img/ig/aviles-poster.jpg,169,film-and-photos,index.html,6ae397b47d3e88ac0bdda900
+mockup/img/ig/factory-line.jpg,255,film-and-photos,index.html,6ae397b538aa8cdca4202ab0
+mockup/img/ig/factory-racks.jpg,217,film-and-photos,index.html,6ae397b60fd7ab0aee69160b
 mockup/img/live-blog-before.png,341,misc,blog-post.html,
-mockup/img/local/car_gold.png,1188,illustration,index.html,
-mockup/img/local/storefront.png,2275,illustration,index.html,
-mockup/img/part-drum-brake.jpg,188,bike,index.html,
-mockup/img/part-enviolo-belt.jpg,226,bike,index.html,
-mockup/img/part-headlamp.jpg,137,bike,index.html,
-mockup/img/part-shifter.jpg,79,bike,index.html,
-mockup/img/pier-lineart_gold.png,399,illustration,(css/js),
+mockup/img/local/car_gold.png,1188,illustration,index.html,6ae397b83227b85ab08e42ac
+mockup/img/local/storefront.png,2275,illustration,index.html,6ae397b97cb9f6949ae746e7
+mockup/img/part-drum-brake.jpg,188,bike,index.html,6ae397b97ec3941836a41f82
+mockup/img/part-enviolo-belt.jpg,226,bike,index.html,6ae397ba087a62c21358d7bf
+mockup/img/part-headlamp.jpg,137,bike,index.html,6ae397bc2f70d0565b43fad9
+mockup/img/part-shifter.jpg,79,bike,index.html,6ae397bc10d19bd2b4668067
+mockup/img/pier-lineart_gold.png,399,illustration,(css/js),6ae397bda477de7803fd97a0
 mockup/img/priority-spec-board.jpg,244,misc,blog-post.html,
 mockup/img/related/custom-bicycle.jpg,313,blog,blog-post.html,
 mockup/img/related/how-it-started.jpg,385,blog,blog-post.html,
 mockup/img/related/october-launch.jpg,99,blog,blog-post.html,
-mockup/img/riders-bayfront.jpg,566,misc,blog-post.html index.html,
-mockup/img/skyline-lineart_gold.png,485,illustration,(css/js),
+mockup/img/riders-bayfront.jpg,566,misc,blog-post.html index.html,6ae397bedbe0d3dc96077018
+mockup/img/skyline-lineart_gold.png,485,illustration,(css/js),6ae397bfd525b4839554bef5
 mockup/img/sponsor-alligator-farm.png,149,sponsors,index.html,
 mockup/img/sponsor-kookaburra.png,17,sponsors,index.html,
 mockup/img/sponsor-the-amp.png,103,sponsors,download.html index.html,
-mockup/img/station-map.png,640,stations,download.html index.html,
-mockup/img/tower-sign.jpg,407,stations,index.html,
+mockup/img/station-map.png,640,stations,download.html index.html,6ae397c0b015a92cb589b43a
+mockup/img/tower-sign.jpg,407,stations,index.html,6ae397c05108c05608b660a0
 mockup/windsor-bt-bold.ttf,61,misc,(css/js),

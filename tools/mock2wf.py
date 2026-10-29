@@ -162,7 +162,7 @@ class Tree(html.parser.HTMLParser):
 
 SVG_CASE = {k.lower(): k for k in ("viewBox", "preserveAspectRatio", "gradientUnits", "gradientTransform", "patternUnits", "clipPathUnits",
                                     "markerWidth", "markerHeight", "refX", "refY", "stdDeviation", "textLength", "lengthAdjust", "pathLength",
-                                    "maskUnits", "maskContentUnits", "spreadMethod", "startOffset", "xlink:href")}
+                                    "maskUnits", "maskContentUnits", "spreadMethod", "startOffset", "xlink:href", "patternTransform", "patternContentUnits", "primitiveUnits", "filterUnits", "baseFrequency", "numOctaves", "kernelMatrix", "tableValues", "attributeName", "repeatCount", "keyTimes", "keySplines", "calcMode")}
 SVG_TAGS = {"lineargradient": "linearGradient", "radialgradient": "radialGradient", "clippath": "clipPath", "textpath": "textPath", "foreignobject": "foreignObject"}
 
 

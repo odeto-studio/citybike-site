@@ -1,5 +1,5 @@
-"""List every local media file the v3 Showcase build references, for upload to Webflow Assets.
-Scans the built mockup-v3 pages plus the v2/v3 CSS and JS. Writes webflow/assets.csv.
+"""List every local media file the approved build references, for upload to Webflow Assets.
+Scans the built mockup-v3-ian pages (the variant Chris approved 2026-10-29) plus the v2/v3 CSS and JS and the app sim. Writes webflow/assets.csv.
 Run: python3 -I tools/assets.py (rebuild the mockups first: bash ../../projects/launch-site/deploy.sh builds them)."""
 import csv
 import pathlib
@@ -8,10 +8,13 @@ import re
 HERE = pathlib.Path(__file__).resolve().parent.parent
 SITE = HERE.parent.parent / "projects" / "launch-site"
 V3 = SITE / "mockup-v3"
-SOURCES = [p for p in V3.glob("*.html")] + [SITE / "mockup-v2" / "v2.css", SITE / "mockup-v2" / "v2.js", V3 / "v3.css", V3 / "v3.js"]
+BUILT = SITE / "mockup-v3-ian"  # approved variant; its pages load v3 CSS/JS from mockup-v3/
+SOURCES = [p for p in BUILT.glob("*.html")] + [SITE / "mockup-v2" / "v2.css", SITE / "mockup-v2" / "v2.js", V3 / "v3.css", V3 / "v3.js",
+                                             V3 / "appsim.css", V3 / "appsim.js"]
 REF = re.compile(r"""(?:src|href|poster|data-[a-z-]+)=["']([^"'#?]+\.(?:jpe?g|png|webp|gif|svg|mp4|webm|ttf|otf|woff2?))|url\(["']?([^"')#?]+\.(?:jpe?g|png|webp|gif|svg|ttf|otf|woff2?))|["']([^"'\s]+\.(?:jpe?g|png|webp|mp4|svg))["']""", re.I)
 FOLDER = [("brand/", "brand"), ("sponsor-", "sponsors"), ("part-", "bike"), ("bike", "bike"), ("ig/", "film-and-photos"),
-          ("why-", "film-and-photos"), ("lineart", "illustration"), ("local/", "illustration"), ("tower", "stations"), ("station", "stations")]
+          ("why-", "film-and-photos"), ("lineart", "illustration"), ("local/", "illustration"), ("tower", "stations"), ("station", "stations"), ("ian/", "film-and-photos"),
+          ("collectives/", "collectives"), ("related/", "blog")]
 
 
 def folder(path):

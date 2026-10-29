@@ -385,18 +385,18 @@ a{color:inherit}
 .coll_card h3{font-family:var(--city-bike--font-display);font-size:1.25rem;line-height:1.2;margin:0 0 .3rem}
 .coll_card p{margin:0;color:var(--city-bike--ink-2);font-size:.9375rem;line-height:1.45}
 @media (max-width:767px){.coll_hero img{aspect-ratio:16/10}}
-.lb h3{font-family:var(--city-bike--font-display);font-size:1.45rem;line-height:1.12;margin:0 0 .5rem}
+.lb h3{font-family:var(--city-bike--font-display);font-size:clamp(1.65rem,2.3vw,2.25rem);line-height:1.05;margin:0 0 .75rem}
 .lb p{margin:0;color:var(--city-bike--ink-2);font-size:.9375rem}
 .lb_link .arrow{transition:transform .2s cubic-bezier(.2,.7,.2,1)}
 .lb_link:hover .arrow{transform:translateX(3px)}
-.lb_art img{width:100%;max-height:12rem;object-fit:contain;object-position:50% 100%;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.lb_art img{width:100%;max-height:16rem;object-fit:contain;object-position:50% 100%;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
 .lb:hover .lb_art img{transform:translateX(.4rem)}
 .lb:not(.is-ink) .lb_art img{mix-blend-mode:multiply}
 .lb.is-ink p{color:#bdb7a9}
 .lb.is-navy p{color:#c9d3df}
-.lb_num b{font-family:var(--city-bike--font-display);font-size:clamp(4rem,6vw,5.75rem);line-height:.85;color:#fff}
-.lb_num span{font:500 .75rem/1.4 var(--city-bike--font-mono);letter-spacing:.08em;text-transform:uppercase;color:#c9d3df;margin-top:.6rem}
-@media (max-width:767px){.lb_art img{max-height:9rem}}
+.lb_num b{font-family:var(--city-bike--font-display);font-size:clamp(5.5rem,10vw,9.5rem);line-height:.8;color:#fff;letter-spacing:-.02em}
+.lb_num span{font:500 .8125rem/1.4 var(--city-bike--font-mono);letter-spacing:.08em;text-transform:uppercase;color:#c9d3df;margin-top:.9rem}
+@media (max-width:767px){.lb_art img{max-height:11rem}}
 .curtain>.tour:first-child{border-radius:0}
 .tour_bike img{position:absolute;inset:0;width:100%;height:100%;max-width:none;user-select:none;-webkit-user-drag:none}
 .tour_shade{-webkit-mask:url(https://cdn.prod.website-files.com/676f05e19f0c2d276a11bbcd/6ae397b066f2eb73093e8368_bike.webp) 0 0/100% 100% no-repeat}
@@ -445,6 +445,11 @@ a{color:inherit}
   .tour_photo{display:none}
   .tour_card{grid-template-columns:1fr}
 }
+:is(.section,.page-hero,.hero_component,.docks,.tour_intro) :is(h1,h2,h3):is(.heading-title,.heading-card,.display):not(.story_title):not(.why_head>*){margin-bottom:1.75rem}
+:is(.section,.page-hero,.hero_component,.docks,.tour_intro) :is(h1,h2,h3):is(.heading-title,.heading-card,.display):not(.story_title):not(.why_head>*)+*{margin-top:0}
+:is(.section,.page-hero) :is(h3:not([class]),.post_title){margin-bottom:.75rem}
+:is(.section,.page-hero) :is(h3:not([class]),.post_title)+p{margin-top:0}
+.section .comm_item>h3,.section .post_body>.post_title{margin-bottom:0}
 .appsim{-webkit-user-select:none}
 .appsim_cam img{display:block;width:100%;height:100%;filter:grayscale(.15) contrast(1.02)}
 .appsim_cam svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
@@ -495,6 +500,33 @@ a{color:inherit}
 @media (max-width:767px){.sp_photo img{aspect-ratio:16/9;max-height:12rem;object-position:60% 55%}}
 @media (max-width:767px){.stats_row.is-stack .stats_item,.stats_row.is-stack .stats_item + .stats_item{padding:1rem 0 !important;gap:1rem}}
 @media (max-width:767px){.stats_row.is-stack .stats_item,.stats_row.is-stack .stats_item + .stats_item{grid-template-columns:minmax(0,7.5rem) 1fr}}
+/* mockup inline styles (mock2wf.inline_rules) */
+[data-dcb-style="060ffc6"]{margin:0 0 2rem !important}
+[data-dcb-style="be213ee"]{margin:1rem 0 2.5rem !important;max-width:18ch !important}
+[data-dcb-style="c788c1a"]{width:100% !important;border-radius:4px !important;border:1px solid var(--city-bike--line) !important}
+[data-dcb-style="26ff547"]{margin:.75rem 0 0 !important;max-width:36rem !important}
+[data-dcb-style="26ef8a3"]{margin:0 0 1.25rem !important}
+[data-dcb-style="d2853e4"]{color:#fff !important;max-width:19ch !important;margin:0 0 2rem !important}
+[data-dcb-style="d83a78e"]{margin:0 !important;max-width:20rem !important}
+[data-dcb-style="7662a36"]{display:block !important;margin-bottom:1rem !important}
+[data-dcb-style="6cf2d9c"]{margin-bottom:2.25rem !important}
+[data-dcb-style="64a5ac9"]{display:flex !important;gap:.75rem !important;flex-wrap:wrap !important}
+[data-dcb-style="fcbc160"]{max-width:52rem !important;margin-bottom:4rem !important}
+[data-dcb-style="2ade0ef"]{max-width:46rem !important;margin-bottom:3rem !important}
+[data-dcb-style="1dfc010"]{margin:0 0 1.5rem !important}
+[data-dcb-style="6982440"]{overflow:hidden !important}
+[data-dcb-style="031837b"]{margin-bottom:3rem !important}
+[data-dcb-style="76526dc"]{max-width:14ch !important}
+[data-dcb-style="0dcd1ad"]{padding-top:2rem !important}
+[data-dcb-style="37c8c69"]{object-position:78% 80% !important}
+[data-dcb-style="e69d01f"]{object-position:50% 35% !important}
+[data-dcb-style="f836784"]{object-position:50% 100% !important}
+[data-dcb-style="9782cef"]{margin-bottom:2.5rem !important}
+[data-dcb-style="1169661"]{margin:0 !important}
+[data-dcb-style="0e83ee9"]{margin-top:2rem !important}
+[data-dcb-style="c96b47b"]{display:flex !important;justify-content:space-between !important;align-items:end !important;gap:2rem !important;flex-wrap:wrap !important;margin-bottom:3rem !important}
+[data-dcb-style="ebcb7d6"]{max-width:24rem !important;margin:0 !important}
+[data-dcb-style="d7ba194"]{margin:0 !important;max-width:42rem !important;color:#cfcabd !important}
 /* Hand-written: differences between the mockup's markup and what Webflow builds. Appended to site.css by tools/mock2wf.py. */
 /* Webflow drops whitespace-only text between elements; the hero's three lines flow inline on phones and need their spaces back. */
 @media (max-width:479px){.hero_title span:not(:last-child)::after{content:" "}}

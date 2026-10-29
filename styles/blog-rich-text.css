@@ -1,0 +1,4 @@
+/* Blog rich-text image fix. The live site caps img at max-width:50%; figures collapse to the image's intrinsic width. */
+.text-rich-text figure { display: block; width: 100%; max-width: 100%; }
+.text-rich-text figure > div { display: block; }
+.text-rich-text figure img { width: 100%; max-width: 100%; }

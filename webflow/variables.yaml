@@ -1,0 +1,28 @@
+# Mockup v2 tokens (mockup-v2/v2.css :root) -> Webflow variables on the live site.
+# Live naming (build-rules §4): base-color-brand--*, base-color-neutral--*, then semantic aliases.
+# VERIFY against the live variable collection before creating anything: reuse an existing variable when the value matches.
+# live: = name found on the live site (fill at build), "" = create.
+colors:
+  base-color-neutral--black:      {mockup: --ink,       value: "#0d0d0c", live: ""}
+  base-color-neutral--darkest:    {mockup: --ink-2,     value: "#2b2a27", live: ""}
+  base-color-neutral--darker:     {mockup: --ink-3,     value: "#5d5a53", live: ""}
+  base-color-neutral--dark:       {mockup: --ink-4,     value: "#8c887e", live: ""}
+  base-color-neutral--paper:      {mockup: --paper,     value: "#f4f0e7", live: ""}
+  base-color-neutral--paper-dark: {mockup: --paper-2,   value: "#ebe5d8", live: ""}
+  base-color-neutral--white:      {mockup: --white,     value: "#ffffff", live: ""}
+  border-color--light:            {mockup: --line,      value: "#d9d2c3", live: ""}
+  border-color--dark:             {mockup: --line-dark, value: "#2a2926", live: ""}
+  bike-share-gold:                {mockup: --gold,      value: "#a29060", live: "bike-share-gold", note: "large type, numbers, accents only; fails AA as small text on white"}
+  base-color-brand--gold-deep:    {mockup: --gold-deep, value: "#7d6e45", live: ""}
+  base-color-brand--gold-pale:    {mockup: --gold-pale, value: "#e9e1cc", live: ""}
+  base-color-brand--navy:         {mockup: --navy,      value: "#22344d", live: "", note: "station-sign navy, second brand color since v2.8"}
+  bike-share-purple:              {mockup: --zone-purple, value: "#851b73", live: "bike-share-purple", note: "sponsor zones only"}
+  bike-share-blue:                {mockup: --zone-blue,   value: "#0090c5", live: "bike-share-blue",   note: "sponsor zones only"}
+fonts:
+  display: {mockup: --display, value: "Windsor BT Bold", fallback: "Georgia, serif", note: "self-hosted on live; reuse the uploaded font"}
+  body:    {mockup: --body,    value: "Inter",           fallback: "system-ui, sans-serif"}
+  mono:    {mockup: --mono,    value: "IBM Plex Mono",   fallback: "ui-monospace, Menlo, monospace", note: "new to the site: add via Google Fonts in site settings"}
+size:
+  container-max: {mockup: --max, value: "88rem"}
+  gutter:        {mockup: --gutter, value: "clamp(1.25rem, 4vw, 3.5rem)", note: "padding-global; Webflow variables accept clamp()"}
+# Type scale and spacing: lift from v2.css (.display, .h2, .h3, .lede, .section padding) when the style guide page is built.

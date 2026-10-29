@@ -12,8 +12,11 @@
     if (!id) return;
     if (!v.getAttribute("poster")) v.poster = "https://image.mux.com/" + id + "/thumbnail.webp?time=0&width=720";
     if (still) return;
-    v.muted = true;
+    v.muted = true; // Webflow reserves autoplay/muted/loop/playsinline as attributes, so the island sets them
+    v.loop = true;
+    v.autoplay = true;
     v.playsInline = true;
+    v.setAttribute("playsinline", "");
     v.src = v.canPlayType("application/vnd.apple.mpegurl")
       ? "https://stream.mux.com/" + id + ".m3u8"
       : "https://stream.mux.com/" + id + "/" + (small ? "480p" : "720p") + ".mp4";

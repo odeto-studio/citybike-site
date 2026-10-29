@@ -27,7 +27,7 @@ CSS = [SITE / "mockup-v2/v2.css", SITE / "mockup-v3/v3.css", SITE / "mockup-v3/a
 PAGES = SITE / "mockup-v3-ian"
 OUT = HERE / "build"
 
-RENAME = {"h2": "heading-2", "h3": "heading-3", "label": "text-label"}
+RENAME = {"h2": "heading-title", "h3": "heading-card", "label": "text-label", "container": "container-site"}  # live site owns .heading-2/.heading-3/.container/.label/.heading-section
 LIVE_REUSE = {"padding-global"}  # live Client-First utility: apply, never restyle
 BP = {"991": "medium", "767": "small", "479": "tiny"}
 PSEUDO = {":hover": "hover", ":focus-visible": "focus-visible", ":focus": "focus", ":active": "active",
@@ -64,11 +64,17 @@ def sub_vars(value):
     return re.sub(r"var\(--([a-z0-9-]+)(,[^)]*)?\)", rep, value)
 
 
+def webflow_can_hold(name, value):
+    """Webflow rejects custom properties and -webkit- names, drops !important, and collapses composite shadows that contain var()."""
+    return not (name.startswith("--") or name.startswith("-webkit-") or "!important" in value
+                or (name in ("box-shadow", "text-shadow", "filter") and "var(" in value))
+
+
 def prop(name, value):
     value = sub_vars(value.strip())
     m = re.fullmatch(r"var\((--[a-z0-9-]+)\)", value)
     if m and m.group(1) in VAR_IDS:
-        return {"property_name": name, "variable_as_value": VAR_IDS[m.group(1)]}
+        return {"property_name": "background-color" if name == "background" else name, "variable_as_value": VAR_IDS[m.group(1)]}
     return {"property_name": name, "property_value": value}
 
 
@@ -113,7 +119,12 @@ def take(r, bp, rules, left, wrap=None):
             chain = tuple(cls(c) for c in m.group(1).split(".")[1:])
             if chain[0] in LIVE_REUSE:
                 continue
-            rules.append((chain, PSEUDO.get(pseudo, "noPseudo"), bp, body))
+            ok = [(k, v) for k, v in body if webflow_can_hold(k, v)]
+            spill = [(k, v) for k, v in body if not webflow_can_hold(k, v)]
+            rules.append((chain, PSEUDO.get(pseudo, "noPseudo"), bp, ok))
+            if spill:
+                text = s + "{" + ";".join(f"{k}:{sub_vars(v)}" for k, v in spill) + "}"
+                left.append(f"{wrap}{{{text}}}" if wrap else text)
         else:
             keep.append(s)
     if keep:

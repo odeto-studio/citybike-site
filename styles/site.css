@@ -18,15 +18,18 @@ a{color:inherit}
 .badge svg{width:1.55rem;height:1.55rem;flex:none}
 .badge small{display:block;font-size:.625rem;line-height:1.1;letter-spacing:.02em}
 .badge b{display:block;font-size:1.125rem;font-weight:600;line-height:1.15;letter-spacing:-.01em}
+.status_live{box-shadow:12px 0 12px var(--city-bike--ink)}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(88,214,141,.55)}70%{box-shadow:0 0 0 .55rem rgba(88,214,141,0)}100%{box-shadow:0 0 0 0 rgba(88,214,141,0)}}
 .status_component:hover .status_track{animation-play-state:paused}
 .status_track span{display:inline-flex;gap:.75rem;align-items:center}
 .status_track span::after{content:"";width:.3rem;height:.3rem;border-radius:50%;background:var(--bike-share-gold);margin-left:3rem}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.nav_component.is-solid{-webkit-backdrop-filter:saturate(1.4) blur(12px)}
 .nav_logo img{height:100%;width:auto}
 .nav_component.is-over-hero:not(.is-solid) .nav_logo img{filter:brightness(0) invert(1)}
 .nav_link:hover::after{transform:scaleX(1)}
 .nav_component.is-over-hero:not(.is-solid) .nav_cta{background:#fff;color:var(--city-bike--ink)}
+.nav_cta:hover{background:var(--bike-share-gold) !important;color:var(--city-bike--ink) !important}
 .nav_cta svg{width:1rem;height:1rem}
 .hero_media img{width:100%;height:100%;object-fit:cover;object-position:62% 60%;transform:scale(1.04);animation:heroIn 1.6s cubic-bezier(.2,.7,.2,1) forwards}
 @keyframes heroIn{to{transform:scale(1)}}
@@ -46,8 +49,10 @@ a{color:inherit}
 .route_stop:last-child .route_marker{background:var(--bike-share-gold);border-color:var(--city-bike--ink)}
 .route_stop h3{font-family:var(--city-bike--font-display);font-size:1.625rem;line-height:1.1;margin:.4rem 0 .6rem}
 .route_stop p{margin:0;color:var(--city-bike--ink-2);font-size:1rem;max-width:18rem}
+.ticket{-webkit-mask:radial-gradient(circle .85rem at calc(100% - 11rem) 0,#0000 98%,#000) top/100% 51% no-repeat,radial-gradient(circle .85rem at calc(100% - 11rem) 100%,#0000 98%,#000) bottom/100% 51% no-repeat}
 .ticket_type i{font-style:normal;color:var(--city-bike--gold-deep)}
 .ticket.is-gold .ticket_stub{border-color:#c4b48a}
+.stations_map{box-shadow:0 1px 0 var(--city-bike--line),0 24px 60px -30px rgba(40,30,10,.35)}
 .stations_map img{width:100%;border-radius:2px}
 .stations_map figcaption{display:flex;justify-content:space-between;font-family:var(--city-bike--font-mono);font-size:.6875rem;letter-spacing:.08em;text-transform:uppercase;color:var(--city-bike--ink-3);padding-top:.85rem}
 .bike_board img{width:100%}
@@ -152,11 +157,15 @@ a{color:inherit}
 @media (max-width:767px){body{font-size:1rem}}
 @media (max-width:767px){.hero_fact:nth-child(3){border-left:0;padding-left:0}}
 @media (max-width:767px){.hero_fact:nth-child(n/**/+3){border-top:1px solid rgba(255,255,255,.18);margin-top:1rem}}
+@media (max-width:767px){.ticket{-webkit-mask:none}}
 @media (max-width:767px){.bike_spec:nth-child(3),.help_item:nth-child(3){border-left:0;padding-left:0}}
 @media (max-width:767px){.stats_item:nth-child(3){border-left:0;padding-left:0}}
 @media (max-width:767px){.steps-v li{grid-template-columns:3.5rem 1fr;gap:1rem}}
 @media (max-width:767px){.steps-v .big{font-size:2.75rem}}
 @media (max-width:479px){.hero_side .badges{flex-direction:column}}
+@media (max-width:479px){.bike_spec{border-left:0 !important;padding-left:0 !important}}
+@media (max-width:479px){.help_item{border-left:0 !important;padding-left:0 !important}}
+@media (max-width:479px){.stats_item{border-left:0 !important;padding-left:0 !important}}
 .proposal_list li{display:grid;grid-template-columns:9rem 1fr;gap:1.5rem;padding-bottom:1.1rem;border-bottom:1px solid var(--city-bike--line)}
 .proposal_list li:last-child{border:0;padding:0}
 .proposal_list a{font-weight:600}
@@ -192,6 +201,7 @@ a{color:inherit}
 @keyframes asWalker{0%{opacity:0}75%{opacity:1}100%{opacity:1}}
 @keyframes docked{0%{opacity:0}75%{opacity:1}100%{opacity:1}}
 .route_stop:last-child .route_marker{width:2.4rem;height:2.4rem;top:-.2rem;left:-.2rem}
+.docks_tower{-webkit-mask:linear-gradient(#000 86%,transparent 99%)}
 .docks_tower img{width:100%;height:100%;object-fit:contain}
 .trip_stop small{display:block;font-size:.75rem;color:var(--city-bike--ink-3)}
 .trip_stop b{font-family:var(--city-bike--font-display);font-size:1.15rem;font-weight:700;line-height:1.2}
@@ -214,6 +224,7 @@ a{color:inherit}
 .fare_plan span{font-size:.8125rem;color:var(--city-bike--ink-3)}
 .fare_plan b{font-family:var(--city-bike--font-display);font-size:1.75rem;line-height:1.1}
 .fare_plan small{font-size:.8125rem;color:var(--city-bike--ink-3)}
+.fare_plan.is-active{box-shadow:0 0 0 1px var(--city-bike--ink)}
 .fares_grid .fare{max-width:34rem;justify-self:end;width:100%}
 .bike_board img{width:100%;filter:drop-shadow(0 30px 30px rgba(60,45,10,.12))}
 .bike_panel-media .fit{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity .3s}
@@ -247,6 +258,7 @@ a{color:inherit}
 .why_row p{margin:0;color:var(--city-bike--ink-2);font-size:.9375rem}
 .why_row .link-arrow{margin-left:.25rem;font-size:.875rem}
 .route_pin>.padding-global{width:100%}
+.route_track{--m:3rem}
 .route_stop:not(.is-active){opacity:.38}
 .route_stop:last-child .route_marker{top:0;left:0;width:var(--m);height:var(--m);border:2px solid var(--city-bike--ink);background:#fff;display:grid;place-items:center}
 .route_stop:last-child .route_marker{background:#fff}
@@ -274,14 +286,18 @@ a{color:inherit}
 @media (max-width:767px){.route_stop:last-child .route_marker{width:1.6rem;height:1.6rem;left:-.95rem;top:.1rem}}
 .fleet_swap li{font-size:1.0625rem;grid-template-columns:5.75rem 1.5rem 1fr}
 .fleet_swap s{color:var(--city-bike--ink-3)}
+.docks{--ground:7svh}
 .docks_pin>.padding-global{width:100%;height:100%;position:relative;z-index:1}
+.docks_stage{-webkit-mask:linear-gradient(transparent,#000 9%)}
 .docks_stage .tower{height:94%}
 .docks.is-pier .docks_pier{background-image:url(../mockup/img/pier-lineart_gold.png)}
 .sponsors_copy .lede{margin:1.25rem 0 2rem;max-width:30rem}
 .sponsors_tile img{width:100%;max-width:15rem;max-height:6.5rem;object-fit:contain}
 .sponsors_tile.is-lead img{max-width:22rem;max-height:none}
+@media (max-width:991px){.docks{--ground:0px}}
 @property --vx{syntax:"<length>";inherits:true;initial-value:0px}
 @property --vy{syntax:"<length>";inherits:true;initial-value:0px}
+.smap_box{--vx:50%;--vy:50%}
 .smap_cam img{display:block;width:100%;height:100%}
 @keyframes smapPulse{from{transform:scale(1);opacity:.9}to{transform:scale(1.7);opacity:0}}
 .stations_map.is-on .smap_veil,.stations_map.is-on .smap_ring,.stations_map.is-on .smap_tag{opacity:1}
@@ -304,6 +320,7 @@ a{color:inherit}
 .docks_steps li{grid-template-columns:3.25rem 1fr;gap:1rem;align-items:center}
 .docks_ico svg{width:2.1rem;height:2.1rem}
 .docks_ico b{position:absolute;right:-.35rem;top:-.35rem;width:1.35rem !important;height:1.35rem !important;font-size:.6875rem !important}
+.hero_component.is-cover{--film:min(48vw,calc(100svh * .5625 * 1.1))}
 .hero_component.is-cover .hero_cover{grid-template-columns:1fr;max-width:none}
 .hero_component.is-cover .hero_cover-text{max-width:calc(100% - var(--film) + 2rem);position:relative;z-index:2}
 .hero_component.is-cover .hero_film{position:absolute;top:0;right:0;bottom:0;width:var(--film);margin:0;z-index:1;-webkit-mask:linear-gradient(90deg,transparent,#000 16%);mask:linear-gradient(90deg,transparent,#000 16%)}
@@ -336,10 +353,12 @@ a{color:inherit}
 .scr-sheet em{font-style:normal;background:var(--city-bike--ink);color:#fff;border-radius:.6rem;padding:.6rem;text-align:center;font-weight:600;margin-top:.6rem}
 @keyframes scrRing{from{transform:scale(1);opacity:.5}to{transform:scale(1.15);opacity:0}}
 .scr-ride b{color:#fff}
+.scr-timer{font-family:var(--city-bike--font-mono) !important;font-size:2rem !important}
 .pick .btn{background:#fff;color:var(--city-bike--ink)}
 .mock a{color:inherit}
 .mock span{white-space:nowrap}
 @media (max-width:991px){.stations_head .lede{margin-bottom:1.75rem !important}}
+@media (max-width:991px){.stations_list{-webkit-mask-image:linear-gradient(#000 78%,transparent)}}
 @media (max-width:991px){.stations_list .board{transition:transform .45s cubic-bezier(.2,.7,.2,1);will-change:transform}}
 @media (max-width:991px){.stations_list .board_foot,.stations_list .note{display:none !important}}
 @media (max-width:767px){.why_card .why_media{aspect-ratio:4/5}}
@@ -365,12 +384,14 @@ a{color:inherit}
 @media (max-width:767px){.coll_hero img{aspect-ratio:16/10}}
 .curtain>.tour:first-child{border-radius:0}
 .tour_bike img{position:absolute;inset:0;width:100%;height:100%;max-width:none;user-select:none;-webkit-user-drag:none}
+.tour_shade{-webkit-mask:url(img/bike.webp) 0 0/100% 100% no-repeat}
 .tour_lamp i{position:absolute;inset:-20%;border-radius:50%;background:radial-gradient(circle,#fffdf4 0%,rgba(255,240,200,.85) 28%,rgba(255,226,160,0) 70%);mix-blend-mode:screen}
 .tour_focus b{position:absolute;right:-.45rem;top:-.45rem;width:1.6rem;height:1.6rem;border-radius:50%;background:var(--bike-share-gold);color:var(--city-bike--ink);font:600 .75rem/1.6rem var(--city-bike--font-mono);text-align:center}
 .tour_intro .display{color:#fff;margin:0 0 1.5rem}
 .tour_intro .lede{color:#cfcabd}
 .tour_cue i{width:1px;height:2.25rem;background:linear-gradient(var(--bike-share-gold),transparent);animation:cue 1.8s cubic-bezier(.2,.7,.2,1) infinite}
 @keyframes cue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.tour_card{-webkit-backdrop-filter:blur(16px) saturate(1.2)}
 .tour_card .h3{color:#fff;margin:0 0 .75rem}
 .tour_card p{margin:0;color:#cfcabd;font-size:1rem;line-height:1.55}
 .tour_photo img{width:100%;height:100%;object-fit:cover}
@@ -409,6 +430,7 @@ a{color:inherit}
   .tour_photo{display:none}
   .tour_card{grid-template-columns:1fr}
 }
+.appsim{-webkit-user-select:none}
 .appsim_cam img{display:block;width:100%;height:100%;filter:grayscale(.15) contrast(1.02)}
 .appsim_cam svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
 .appsim.is-ride .appsim_route,.appsim.is-done .appsim_route{stroke-dashoffset:0}
@@ -432,6 +454,7 @@ a{color:inherit}
 .appsim_qr i:nth-child(2){top:0;right:0;border-left:0;border-bottom:0;border-radius:0 .5rem 0 0}
 .appsim_qr i:nth-child(3){bottom:0;left:0;border-right:0;border-top:0;border-radius:0 0 0 .5rem}
 .appsim_qr i:nth-child(4){bottom:0;right:0;border-left:0;border-top:0;border-radius:0 0 .5rem 0}
+.appsim_laser{box-shadow:0 0 10px var(--bike-share-gold)}
 @keyframes appsimLaser{to{top:85%}}
 .appsim_scan p{margin:0;font-size:.6875rem;color:#cfcac0;max-width:11rem}
 .appsim_scan b{font:700 .9rem var(--city-bike--font-body);color:#fff}

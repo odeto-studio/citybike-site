@@ -243,7 +243,7 @@ def schema(n, ids, report):
         s["type"] = "Paragraph"
     elif tag == "a":
         href = at.get("href", "#")
-        href = re.sub(r"^(index|download|sponsorship|faq|collectives|blog-post)\.html", lambda m: "/" if m.group(1) == "index" else f"/{m.group(1)}", href)
+        href = re.sub(r"^(index|download|sponsorship|faq|collectives|blog-post)\.html", lambda m: {"index": "/", "blog-post": "/updates"}.get(m.group(1), f"/{m.group(1)}"), href)  # the mockup's one post page stands in for the blog
         s.update({"type": "LinkBlock", "set_link": {"link_type": "email" if href.startswith("mailto:") else "url", "link": href.replace("mailto:", "")}})
     elif tag == "button":  # BY_CUSTOM_TAG button becomes a Webflow Button, i.e. <a href="#">
         s.update({"type": "DOM", "set_dom_config": {"dom_tag": "button"}})

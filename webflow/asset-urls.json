@@ -98,5 +98,33 @@
  "bike": {
   "id": "6ae397b066f2eb73093e8368",
   "url": "https://cdn.prod.website-files.com/676f05e19f0c2d276a11bbcd/6ae397b066f2eb73093e8368_bike.webp"
+ },
+ "a1a": {
+  "url": "https://cdn.prod.website-files.com/676f05e19f0c2d276a11bc0c/6855d47d81f461cf0e38c86f_A1A%20Collective.svg",
+  "source": "List of Collectives CMS icon (live)"
+ },
+ "blvd": {
+  "url": "https://cdn.prod.website-files.com/676f05e19f0c2d276a11bc0c/6855d4854865066775db1eae_BLVD%20Collective.svg",
+  "source": "List of Collectives CMS icon (live)"
+ },
+ "city-experience": {
+  "url": "https://cdn.prod.website-files.com/676f05e19f0c2d276a11bc0c/6855d46b84e6d8e7ef180b18_City%20Experience%20Collective.svg",
+  "source": "List of Collectives CMS icon (live)"
+ },
+ "king-street": {
+  "url": "https://cdn.prod.website-files.com/676f05e19f0c2d276a11bc0c/6855d48c53fe1fb0d2d262bf_Kingstreet%20Collective.svg",
+  "source": "List of Collectives CMS icon (live)"
+ },
+ "lincolnville": {
+  "url": "https://cdn.prod.website-files.com/676f05e19f0c2d276a11bc0c/6855d4744805e04e983ad839_Lincolnville%20Collective.svg",
+  "source": "List of Collectives CMS icon (live)"
+ },
+ "st-augustine": {
+  "url": "https://cdn.prod.website-files.com/676f05e19f0c2d276a11bc0c/6855d49e3723d486a31e7c17_St%20Augustine%20Collective.svg",
+  "source": "List of Collectives CMS icon (live)"
+ },
+ "uptown": {
+  "url": "https://cdn.prod.website-files.com/676f05e19f0c2d276a11bc0c/6855d493a4a63c50ae42d346_Uptown%20Collective.svg",
+  "source": "List of Collectives CMS icon (live)"
  }
 }

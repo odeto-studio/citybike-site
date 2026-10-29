@@ -417,7 +417,13 @@ window.dcbActors = function (svg, host) {
     b.addEventListener("click", function () {
       var mode = b.dataset.whyTab; sec.dataset.mode = mode;
       sec.querySelectorAll("[data-why-tab]").forEach(function (x) { var on = x === b; x.classList.toggle("is-active", on); x.setAttribute("aria-selected", on); });
+      // The panes box follows the open tab (inactive pane is absolute), easing between the two heights.
+      var box = sec.querySelector(".why_panes"), from = box.offsetHeight;
       sec.querySelectorAll("[data-why-pane]").forEach(function (p) { p.classList.toggle("is-active", p.dataset.whyPane === mode); });
+      var to = sec.querySelector(".why_pane.is-active").offsetHeight;
+      box.style.height = from + "px"; void box.offsetHeight; box.style.height = to + "px";
+      clearTimeout(box._t);
+      box._t = setTimeout(function () { box.style.height = ""; if (window.ScrollTrigger) ScrollTrigger.refresh(); }, 560);
     });
   });
   if (/why=local/.test(location.search)) sec.querySelector('[data-why-tab="local"]').click();

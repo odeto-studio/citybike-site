@@ -18,9 +18,8 @@
 .footer_bottom nav{display:flex;gap:1.5rem;flex-wrap:wrap}
 .footer_bottom a{text-decoration:none}
 .footer_bottom a:hover{color:#fff}
-.appbar p{margin:0;font-size:.875rem;line-height:1.25}
-.appbar p small{display:block;color:#a9a395;font-size:.75rem}
-.appbar a{background:#fff;color:var(--city-bike--ink);border-radius:10px;padding:.7rem 1rem;font-weight:600;font-size:.875rem;text-decoration:none;white-space:nowrap}
+.appbar .appbar_tab.is-current .appbar_ico{color:var(--bike-share-gold)}
+.appbar .w-embed{display:contents}
 @media (max-width:991px){.nav_links .nav_link{display:none}}
 .nav_component.is-over-hero:not(.is-solid) .nav_logo-gold{display:none}
 .nav_component.is-over-hero:not(.is-solid) .nav_logo-white{display:block;filter:none}
@@ -34,5 +33,7 @@
 @media (max-width:767px){.is-docking .appbar{opacity:0;pointer-events:none}}
 .nav_logo img{max-width:none;border-radius:0}
 .footer_component img,.footer_brand img{max-width:none;border-radius:0}
+.appbar_tab.w--current{background-color:#2a2925;color:#fff}
+.appbar .appbar_tab.w--current .appbar_ico{color:var(--bike-share-gold)}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(88,214,141,.55)}70%{box-shadow:0 0 0 .55rem rgba(88,214,141,0)}100%{box-shadow:0 0 0 0 rgba(88,214,141,0)}}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}

@@ -97,9 +97,8 @@ a{color:inherit}
 .footer_bottom nav{display:flex;gap:1.5rem;flex-wrap:wrap}
 .footer_bottom a{text-decoration:none}
 .footer_bottom a:hover{color:#fff}
-.appbar p{margin:0;font-size:.875rem;line-height:1.25}
-.appbar p small{display:block;color:#a9a395;font-size:.75rem}
-.appbar a{background:#fff;color:var(--city-bike--ink);border-radius:10px;padding:.7rem 1rem;font-weight:600;font-size:.875rem;text-decoration:none;white-space:nowrap}
+.appbar .appbar_tab.is-current .appbar_ico{color:var(--bike-share-gold)}
+.appbar .w-embed{display:contents}
 .phone_sheet h4{font-family:var(--city-bike--font-display);font-size:1.05rem;margin:0}
 .phone_meta b{color:var(--city-bike--ink)}
 .steps-v li{display:grid;grid-template-columns:6rem 1fr;gap:2rem;padding:2.25rem 0;border-top:1px solid var(--city-bike--line)}
@@ -566,3 +565,6 @@ a{color:inherit}
 /* The live site's global img style (max-width:50%, 5px radius) squashed the header wordmark on pages without site.css (Updates, CMS templates). */
 .nav_logo img{max-width:none;border-radius:0}
 .footer_component img,.footer_brand img{max-width:none;border-radius:0}
+/* Phone tabs on pages without site.js (Updates, CMS templates): Webflow's own w--current marks the tab instead of is-current. */
+.appbar_tab.w--current{background-color:#2a2925;color:#fff}
+.appbar .appbar_tab.w--current .appbar_ico{color:var(--bike-share-gold)}

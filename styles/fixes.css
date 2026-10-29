@@ -4,3 +4,6 @@
 /* The live site's global img style (max-width:50%, 5px radius) squashed the header wordmark on pages without site.css (Updates, CMS templates). */
 .nav_logo img{max-width:none;border-radius:0}
 .footer_component img,.footer_brand img{max-width:none;border-radius:0}
+/* Phone tabs on pages without site.js (Updates, CMS templates): Webflow's own w--current marks the tab instead of is-current. */
+.appbar_tab.w--current{background-color:#2a2925;color:#fff}
+.appbar .appbar_tab.w--current .appbar_ico{color:var(--bike-share-gold)}

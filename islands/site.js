@@ -25,13 +25,22 @@ document.documentElement.classList.remove("no-js");
   var hero = document.querySelector(".hero_component");
   if (!hero) { nav.classList.add("is-solid", "is-static"); return; } // pages without a hero: the nav sits in flow under the ticker and sticks below it
   nav.classList.add("is-over-hero");
-  var bar = document.querySelector(".appbar");
   function onScroll() {
-    var past = window.scrollY > hero.offsetHeight - 90;
     nav.classList.toggle("is-solid", window.scrollY > 40);
-    if (bar) bar.classList.toggle("is-visible", past);
   }
   window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+})();
+
+// Phone tabs: mark the page you're on (blog posts count as Updates, Collectives as Sponsor). Webflow adds w--current itself on exact matches.
+(function () {
+  function norm(p) { return p.replace(/(index)?(\.html)?$/, "").replace(/\/$/, ""); }
+  var here = norm(location.pathname);
+  document.querySelectorAll(".appbar_tab").forEach(function (a) {
+    var t = norm(a.pathname);
+    var on = t === here || (/(updates|blog-post)$/.test(t) && /\/blog\//.test(here)) || (/sponsorship$/.test(t) && /collectives$/.test(here));
+    a.classList.toggle("is-current", on);
+    if (on) a.setAttribute("aria-current", "page");
+  });
 })();
 
 // Reveal on scroll.

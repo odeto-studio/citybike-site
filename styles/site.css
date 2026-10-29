@@ -474,6 +474,9 @@ a{color:inherit}
 @media (max-width:767px){.docks .trip_route{gap:0}}
 @media (max-width:767px){.is-docking .appbar,.is-docking .mock{opacity:0;pointer-events:none}}
 @media (max-width:767px){.appdl .appdl_phone .phone3{width:min(13.25rem,58vw)}}
+@media (max-width:767px){.page-hero .phone{width:min(12rem,52vw,calc((100svh - 15rem)*.45));border-radius:2.25rem;padding:.5rem}}
+@media (max-width:767px){.page-hero .phone_screen{border-radius:1.8rem}}
+@media (max-width:767px){.page-hero .phone_island{width:4.5rem;height:1.25rem;top:.45rem}}
 @media (max-width:767px){.why_local .lb.is-ink .lb_art{padding:1.25rem 1rem 0}}
 @media (max-width:767px){.why_local .lb.is-ink .lb_art img{max-height:none}}
 @media (max-width:767px) and (max-height:700px){
@@ -582,3 +585,5 @@ body:not(:has(.hero_component)) .nav_component{background:rgba(255,255,255,.94);
 /* Related posts on a blog post: the list pulls 4 (Webflow can't exclude the current item), the post you're on is hidden, and if it isn't among them the 4th goes, so three always show. Home and Updates never have a current card. */
 .section_blog-post4-content~.section .updates_grid>.w-dyn-item:has(.post[aria-current="page"]){display:none}
 .section_blog-post4-content~.section .updates_grid:not(:has(.post[aria-current="page"]))>.w-dyn-item:nth-child(4){display:none}
+/* Footer links on pages without site.css (Updates, blog posts, legal, 404) took the live black link colour on the navy footer and looked missing (Chris 10-29). */
+.footer_component a{color:inherit}

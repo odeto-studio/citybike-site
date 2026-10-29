@@ -450,6 +450,39 @@ a{color:inherit}
 :is(.section,.page-hero) :is(h3:not([class]),.post_title){margin-bottom:.75rem}
 :is(.section,.page-hero) :is(h3:not([class]),.post_title)+p{margin-top:0}
 .section .comm_item>h3,.section .post_body>.post_title{margin-bottom:0}
+@media (max-width:767px){.tour .tour_intro{top:7.5rem}}
+@media (max-width:767px){.tour .tour_intro .display{font-size:2.3rem}}
+@media (max-width:767px){.tour .tour_intro .lede{font-size:1rem}}
+@media (max-width:767px){.docks .docks_pin{padding:7.75rem 0 1rem}}
+@media (max-width:767px){.docks .docks_grid{gap:1.25rem}}
+@media (max-width:767px){.docks .docks_stage{height:30svh}}
+@media (max-width:767px){.docks .docks_copy .heading-title{font-size:1.75rem;margin-bottom:1rem}}
+@media (max-width:767px){.docks .docks_copy .lede{font-size:1rem;margin-top:0}}
+@media (max-width:767px){.docks .docks_tag{margin-bottom:.6rem}}
+@media (max-width:767px){.docks .docks_steps{margin-top:.75rem;gap:.6rem}}
+@media (max-width:767px){.docks .docks_steps li{grid-template-columns:2.5rem 1fr;gap:.75rem;font-size:.9375rem;line-height:1.35}}
+@media (max-width:767px){.docks .docks_ico{width:2.5rem;height:2.5rem;border-radius:11px}}
+@media (max-width:767px){.docks .docks_ico svg{width:1.6rem;height:1.6rem}}
+@media (max-width:767px){.docks .docks_note{margin-top:.75rem;padding-top:.6rem;font-size:.8125rem}}
+@media (max-width:767px){.docks .docks_counts{margin-top:1.25rem}}
+@media (max-width:767px){.docks .docks_counts b{font-size:2.5rem}}
+@media (max-width:767px){.docks .trip{width:10.5rem;padding:.7rem .8rem;right:.25rem;bottom:.75rem;border-radius:14px}}
+@media (max-width:767px){.docks .trip_head{font-size:.8125rem;margin-bottom:.6rem}}
+@media (max-width:767px){.docks .trip_stop b{font-size:.875rem;white-space:nowrap}}
+@media (max-width:767px){.docks .trip_stop small{font-size:.6875rem}}
+@media (max-width:767px){.docks .trip_line{height:1.1rem}}
+@media (max-width:767px){.docks .trip_foot{display:none}}
+@media (max-width:767px){.docks .trip_route{gap:0}}
+@media (max-width:767px){.is-docking .appbar,.is-docking .mock{opacity:0;pointer-events:none}}
+@media (max-width:767px){.appdl .appdl_phone .phone3{width:min(13.25rem,58vw)}}
+@media (max-width:767px){.why_local .lb.is-ink .lb_art{padding:1.25rem 1rem 0}}
+@media (max-width:767px){.why_local .lb.is-ink .lb_art img{max-height:none}}
+@media (max-width:767px) and (max-height:700px){
+  .docks .docks_note{display:none}
+}
+@media (max-width:767px) and (max-height:600px){
+  .docks .docks_stage{height:26svh}
+}
 .appsim{-webkit-user-select:none}
 .appsim_cam img{display:block;width:100%;height:100%;filter:grayscale(.15) contrast(1.02)}
 .appsim_cam svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
@@ -525,8 +558,11 @@ a{color:inherit}
 [data-dcb-style="1169661"]{margin:0 !important}
 [data-dcb-style="0e83ee9"]{margin-top:2rem !important}
 [data-dcb-style="c96b47b"]{display:flex !important;justify-content:space-between !important;align-items:end !important;gap:2rem !important;flex-wrap:wrap !important;margin-bottom:3rem !important}
-[data-dcb-style="ebcb7d6"]{max-width:24rem !important;margin:0 !important}
+[data-dcb-style="1f51ca7"]{max-width:34rem !important;margin:0 !important}
 [data-dcb-style="d7ba194"]{margin:0 !important;max-width:42rem !important;color:#cfcabd !important}
 /* Hand-written: differences between the mockup's markup and what Webflow builds. Appended to site.css by tools/mock2wf.py. */
 /* Webflow drops whitespace-only text between elements; the hero's three lines flow inline on phones and need their spaces back. */
 @media (max-width:479px){.hero_title span:not(:last-child)::after{content:" "}}
+/* The live site's global img style (max-width:50%, 5px radius) squashed the header wordmark on pages without site.css (Updates, CMS templates). */
+.nav_logo img{max-width:none;border-radius:0}
+.footer_component img,.footer_brand img{max-width:none;border-radius:0}

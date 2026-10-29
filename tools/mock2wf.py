@@ -303,6 +303,8 @@ def schema(n, ids, report):
     kids = n["kids"]
     texts = [k for k in kids if k["tag"] == "#text"]
     if kids and len(texts) == len(kids) and s["type"] not in ("Image",):
+        if s.get("custom_tag") == "div":  # Webflow drops set_text on a div (and on TextBlock): text-only divs go in as Paragraph (zone prices, 10-29)
+            s.pop("custom_tag"); s["type"] = "Paragraph"
         s["set_text"] = {"text": re.sub(r"\s+", " ", "".join(k["text"] for k in kids)).strip()}
     else:
         ch = [c for c in (schema(k, ids, report) for k in kids) if c]

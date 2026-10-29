@@ -1,3 +1,6 @@
 /* Hand-written: differences between the mockup's markup and what Webflow builds. Appended to site.css by tools/mock2wf.py. */
 /* Webflow drops whitespace-only text between elements; the hero's three lines flow inline on phones and need their spaces back. */
 @media (max-width:479px){.hero_title span:not(:last-child)::after{content:" "}}
+/* The live site's global img style (max-width:50%, 5px radius) squashed the header wordmark on pages without site.css (Updates, CMS templates). */
+.nav_logo img{max-width:none;border-radius:0}
+.footer_component img,.footer_brand img{max-width:none;border-radius:0}

@@ -331,7 +331,7 @@ window.dcbActors = function (svg, host) {
     .to(beats[1], { autoAlpha: 0, y: -20, duration: .5 }, "b2")
     .fromTo(beats[2], { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: .5 }, "b2+=.5")
     .to({}, { duration: .7 })
-    .to(tower, { scale: 1, yPercent: 0, xPercent: -55 }, "b3")
+    .to(tower, { scale: 1, yPercent: 0, xPercent: function () { return innerWidth < 768 ? -150 : -55; } }, "b3") // phones: the tower steps aside so the trip card sits beside it
     .to(trip, { autoAlpha: 1, y: 0, duration: .6 }, "b3+=.5")
     .fromTo(line, { strokeDashoffset: 64 }, { strokeDashoffset: 0, duration: .6, ease: "none" }, "b3+=.8")
     .to(beats[2], { autoAlpha: 0, y: -20, duration: .5 }, "b3")
@@ -339,7 +339,8 @@ window.dcbActors = function (svg, host) {
     .to({}, { duration: .5 });
   if (/scene=pier/.test(location.search)) sec.classList.add("is-pier");
   ScrollTrigger.create({
-    trigger: sec, pin: sec.querySelector(".docks_pin"), start: "top top", end: "+=" + (beats.length * 95 + 80) + "%", scrub: .6, animation: tl, invalidateOnRefresh: true
+    trigger: sec, pin: sec.querySelector(".docks_pin"), start: "top top", end: "+=" + (beats.length * 95 + 80) + "%", scrub: .6, animation: tl, invalidateOnRefresh: true,
+    onToggle: function (self) { document.body.classList.toggle("is-docking", self.isActive); } // phones hide the app bar while pinned
   });
 })();
 
@@ -522,6 +523,8 @@ if (window.ScrollTrigger) { ScrollTrigger.sort(); ScrollTrigger.refresh(); }
   ];
 
   // where each part is on the bike image; the marker and the sharp window sit here even when the camera frames wider
+  var PHONE_S = [PHONE[0].v[2], PHONE[1].v[2]];
+
   var PART = { 1: [.30, .745], 2: [.615, .09], 3: [.80, .672], 4: [.742, .378], 6: [.60, .36] };
   var phone = matchMedia("(max-width: 767px)"), KEYS = DESK;
   var SW = 0, SH = 0, BW = 0, BH = 0, RATIO = 1360 / 2048;
@@ -532,6 +535,14 @@ if (window.ScrollTrigger) { ScrollTrigger.sort(); ScrollTrigger.refresh(); }
     BH = BW * RATIO;
     cam.style.width = BW + "px"; cam.style.height = BH + "px";
     cam.style.left = (SW - BW) / 2 + "px"; cam.style.top = (SH - BH) / 2 + "px";
+    if (phone.matches) {
+      // intro frames: the bike sits under the copy (it ran under the lede on short phones), shrinking if the screen runs out
+      var intro = tour.querySelector(".tour_intro"), below = intro.offsetTop + intro.offsetHeight + 20;
+      [0, 1].forEach(function (i) {
+        var k = PHONE[i].v, s = Math.min(PHONE_S[i], (SH - below - 12) / BH);
+        k[2] = Math.max(s, .7); k[4] = Math.max(.7, (below + BH * k[2] * k[1]) / SH);
+      });
+    }
   }
 
   function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }

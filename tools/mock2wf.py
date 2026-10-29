@@ -71,7 +71,7 @@ def webflow_can_hold(name, value):
 
 
 def prop(name, value):
-    value = sub_vars(value.strip())
+    value = hosted(sub_vars(value.strip()))
     m = re.fullmatch(r"var\((--[a-z0-9-]+)\)", value)
     if m and m.group(1) in VAR_IDS:
         return {"property_name": "background-color" if name == "background" else name, "variable_as_value": VAR_IDS[m.group(1)]}
@@ -121,7 +121,7 @@ def take(r, bp, rules, left, wrap=None):
                 continue
             ok = [(k, v) for k, v in body if webflow_can_hold(k, v)]
             spill = [(k, v) for k, v in body if not webflow_can_hold(k, v)]
-            rules.append((chain, PSEUDO.get(pseudo, "noPseudo"), bp, ok))
+            rules.append((chain, PSEUDO.get(pseudo, "noPseudo"), bp, ok, len(rules)))
             if spill:
                 text = s + "{" + ";".join(f"{k}:{sub_vars(v)}" for k, v in spill) + "}"
                 left.append(f"{wrap}{{{text}}}" if wrap else text)
@@ -173,7 +173,15 @@ def hosted(text):
     def rep(m):
         hit = urls.get(pathlib.Path(m.group(0)).stem)
         return hit["url"] if hit else m.group(0)
-    return re.sub(r"(?:\.\./)+mockup[\w-]*/[\w/.-]+\.(?:png|jpe?g|webp|svg|gif)", rep, text)
+    text = re.sub(r"(?:\.\./)+mockup[\w-]*/[\w/.-]+\.(?:png|jpe?g|webp|svg|gif)", rep, text)
+
+    def rep_url(m):  # url(img/bike.webp) in CSS: relative to the mockup stylesheet, 404s anywhere else
+        ref = m.group(2)
+        if ref.startswith(("http", "data:", "//", "#")):
+            return m.group(0)
+        hit = urls.get(pathlib.Path(ref).stem)
+        return f"url({hit['url']})" if hit else m.group(0)
+    return re.sub(r"url\((['\"]?)([^)'\"]+)\1\)", rep_url, text)
 
 
 def outer(n):
@@ -234,6 +242,8 @@ def schema(n, ids, report):
         s.update({"type": "LinkBlock", "set_link": {"link_type": "email" if href.startswith("mailto:") else "url", "link": href.replace("mailto:", "")}})
     elif tag == "button":  # BY_CUSTOM_TAG button becomes a Webflow Button, i.e. <a href="#">
         s.update({"type": "DOM", "set_dom_config": {"dom_tag": "button"}})
+    elif tag in ("ul", "ol", "li"):  # BY_CUSTOM_TAG ul/ol becomes a Webflow List: always <ul>, plus 3 default empty <li>
+        s.update({"type": "DOM", "set_dom_config": {"dom_tag": tag}})
     else:
         s.update({"type": "BY_CUSTOM_TAG", "custom_tag": tag})
     # Webflow has no standalone `is-active`/`is-current` (combo only), so a lone state class gets a base class
@@ -277,17 +287,57 @@ def used_classes():
     return used
 
 
+LEVELS = ["main", "medium", "small", "tiny"]  # desktop-first: each level inherits the ones before it
+
+
+def cascade(rules):
+    """For every multi-class chain on the pages, the CSS winner of each property two or more of its classes set.
+    Webflow emits global classes in its own order, so the mockup's 'later rule wins' is lost; the chain's combo
+    (more specific) carries the winners instead. Returns {chain: {level: {prop: value}}} (noPseudo only)."""
+    chains = set()
+    for f in PAGES.glob("*.html"):
+        for c in re.findall(r'class="([^"]*)"', f.read_text()):
+            names = [cls(x) for x in c.split() if not x.startswith("w-")]
+            for i in range(2, len(names) + 1):
+                chains.add(tuple(names[:i]))
+    out = {}
+    for chain in chains:
+        members = set(chain)
+        prev = {}
+        for li, level in enumerate(LEVELS):
+            win, setters = {}, {}
+            for rchain, pseudo, bp, body, idx in rules:
+                if pseudo != "noPseudo" or bp not in LEVELS[: li + 1] or not set(rchain) <= members:
+                    continue
+                key = (len(rchain), LEVELS.index(bp), idx)  # specificity, then later media block, then source order
+                for k, v in body:
+                    setters.setdefault(k, set()).add(rchain)
+                    if k not in win or key >= win[k][0]:
+                        win[k] = (key, v)
+            vals = {k: v for k, (key, v) in win.items() if len(setters[k]) > 1}
+            if level == "main":
+                emit = vals
+            else:
+                emit = {k: v for k, v in vals.items() if prev.get(k) != v}
+            merged = dict(prev); merged.update(vals)
+            prev = merged
+            if emit:
+                out.setdefault(chain, {})[level] = emit
+    return out
+
+
 def cmd_styles():
     rules, left = parse_css()
     used = used_classes()
     dropped = sorted({c for ch, *_ in rules for c in ch if c not in used})
     rules = [r for r in rules if all(c in used for c in r[0])]
-    left = re.sub(r"@font-face\{[^}]*\}\n?", "", left)
+    resolved = cascade(rules)
+    left = hosted(re.sub(r"@font-face\{[^}]*\}\n?", "", left))
     # Webflow wraps every code embed in div.w-embed; on rebuilt pages the wrapper must not take part in layout, so the
     # svg inside sits in the grid/flex exactly as in the mockup (the class lives on the svg, not the wrapper).
     left = "main .w-embed,.end_component .w-embed,.nav_component .w-embed{display:contents}\n" + left
     order, props = [], {}
-    for chain, pseudo, bp, body in rules:
+    for chain, pseudo, bp, body, _ in rules:
         for i in range(1, len(chain) + 1):
             if chain[:i] not in props:
                 props[chain[:i]] = {}
@@ -324,11 +374,21 @@ def cmd_styles():
                 u["pseudo"] = pseudo
             actions.append({"label": f"{'.'.join(chain)}@{bp}:{pseudo}", "update_style": u})
     OUT.mkdir(exist_ok=True)
+    fixes = []
+    for chain, levels in sorted(resolved.items()):
+        for level, vals in levels.items():
+            u = {"style_name": chain[-1], "parent_style_names": list(chain[:-1]), "properties": [prop(k, v) for k, v in vals.items()]}
+            if level != "main":
+                u["breakpoint_id"] = level
+            fixes.append({"label": f"{'.'.join(chain)}@{level}", "update_style": u})
+    (OUT / "styles-cascade.json").write_text(json.dumps(fixes, indent=1))
+    print(f"{len(fixes)} cascade fixes for multi-class chains -> build/styles-cascade.json")
     (OUT / "styles.json").write_text(json.dumps(actions, indent=1))
     (OUT / "styles-extra.json").write_text(json.dumps([a for a in actions if "create_style" in a and tuple(
         (a["create_style"].get("parent_style_names") or []) + [a["create_style"]["name"]]) in set(extra)], indent=1))
     print(f"{len(extra)} chains/classes with no CSS rule of their own -> build/styles-extra.json")
-    (HERE / "styles" / "site.css").write_text("/* Generated by tools/mock2wf.py from the approved mockup: rules Webflow classes can't express. Do not edit by hand. */\n" + left + "\n")
+    fixes_css = (HERE / "styles" / "fixes.css").read_text()
+    (HERE / "styles" / "site.css").write_text("/* Generated by tools/mock2wf.py from the approved mockup: rules Webflow classes can't express. Do not edit by hand; hand fixes go in fixes.css. */\n" + left + "\n" + fixes_css)
     creates = sum(1 for a in actions if "create_style" in a)
     print(f"dropped {len(dropped)} unused classes: {' '.join(dropped)}")
     print(f"{creates} styles, {len(actions) - creates} breakpoint/pseudo updates -> build/styles.json; site.css {len(left)} chars")

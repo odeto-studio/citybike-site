@@ -1,0 +1,3 @@
+/* Hand-written: differences between the mockup's markup and what Webflow builds. Appended to site.css by tools/mock2wf.py. */
+/* Webflow drops whitespace-only text between elements; the hero's three lines flow inline on phones and need their spaces back. */
+@media (max-width:479px){.hero_title span:not(:last-child)::after{content:" "}}

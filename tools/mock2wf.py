@@ -215,6 +215,8 @@ def schema(n, ids, report):
         t = re.sub(r"\s+", " ", n["text"])
         return {"type": "BY_CUSTOM_TAG", "custom_tag": "span", "set_text": {"text": t}} if t.strip() else None
     tag, at = n["tag"], n["attrs"]
+    if {"note", "flag"} & set((at.get("class") or "").split()):
+        return None  # mockup review notes and "confirm with Ian" flags: never ship, even hidden
     s = {}
     classes = [cls(c) for c in (at.get("class") or "").split() if c]
     if classes:

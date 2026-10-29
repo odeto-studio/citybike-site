@@ -21,6 +21,7 @@ Source line refs are `mockup-v2/v2.js` and `mockup-v3/v3.js` as of 2026-10-29; p
 | `rail.js` | `data-dcb-rail` | home | v3.js 157-end | todo |
 | `faq-search.js` | `data-dcb-faq-search`, groups, topics | faq | v2.js 105-126 | todo. FAQ items come from the General FAQs CMS |
 | `fit-text.js` | `data-dcb-fit-text` (footer line) | all | v2.js 435-443 | todo |
+| `mux-video.js` | `video[data-dcb-mux]` (Mux playback id) | home | new 2026-10-29 | written. Safari HLS, else 480p/720p static MP4; hero id in `webflow/mux.json` |
 | `scroll-order.js` | none (sorts ScrollTriggers; smooth-scrolls anchor links; refreshes after fonts and re-lands a #deep link) | home | v2.js 444-468 | todo. Load last. Never pair with CSS `scroll-behavior:smooth` or Webflow's smooth-scroll setting: it breaks ScrollTrigger's measuring and pins the station tower early |
 
 Not ported (mockup only, or cut from v3): notes toggle, review bar, blog before/after, hotspots, fleet tiles, gauge, slot reels, route, image takeover.

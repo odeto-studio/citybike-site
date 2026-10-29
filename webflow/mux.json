@@ -1,0 +1,14 @@
+{
+  "hero-courtyard": {
+    "slug": "hero-courtyard",
+    "asset_id": "6FD01JcIERHfVHxMD00oTor1KiUv00mmqNFRMqBgJTwglY",
+    "playback_id": "UA3pkhp7Z6X7URIHjW7I1OApB01VqxfdAzgcs5sDMJCE",
+    "duration": 20.633333,
+    "aspect_ratio": "9:16",
+    "hls": "https://stream.mux.com/UA3pkhp7Z6X7URIHjW7I1OApB01VqxfdAzgcs5sDMJCE.m3u8",
+    "mp4": "https://stream.mux.com/UA3pkhp7Z6X7URIHjW7I1OApB01VqxfdAzgcs5sDMJCE/720p.mp4",
+    "poster": "https://image.mux.com/UA3pkhp7Z6X7URIHjW7I1OApB01VqxfdAzgcs5sDMJCE/thumbnail.webp?time=0&width=720",
+    "uploaded": "2026-10-29T18:55:28.892Z",
+    "mp4_small": "https://stream.mux.com/UA3pkhp7Z6X7URIHjW7I1OApB01VqxfdAzgcs5sDMJCE/480p.mp4"
+  }
+}

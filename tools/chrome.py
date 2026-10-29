@@ -56,11 +56,11 @@ def pick(nodes, cls):
     return next(n for n in nodes if cls in (n["attrs"].get("class") or "").split())
 
 
-CHROME = re.compile(r"\.(site-header|status_|nav_|appbar|footer_)")
+CHROME = re.compile(r"\.(site-header|status_|nav_|appbar|footer_|updates_|post\b|post_)")  # blog cards render on pages without site.css (Updates, blog template)
 
 
 def chrome_css():
-    """The header/footer rules out of styles/site.css, for the site-wide head: pages not rebuilt yet (Updates, In the Press,
+    """The header/footer (and blog card) rules out of styles/site.css, for the site-wide head: pages not rebuilt yet (Updates, In the Press,
     CMS templates) get the new chrome without site.css's global body/img/a rules."""
     import tinycss2
     sheet = tinycss2.parse_stylesheet((m.HERE / "styles" / "site.css").read_text(), skip_comments=True, skip_whitespace=True)
@@ -70,7 +70,7 @@ def chrome_css():
         kept = []
         for r in rules:
             if r.type == "qualified-rule":
-                sels = [s for s in tinycss2.serialize(r.prelude).split(",") if CHROME.search(s)]
+                sels = [s for s in m.split_top(tinycss2.serialize(r.prelude)) if CHROME.search(s)]  # top-level commas only: :is(a,b) stays whole
                 if sels:
                     body = tinycss2.serialize(r.content)
                     used_frames.update(re.findall(r"animation(?:-name)?\s*:\s*([\w-]+)", body))

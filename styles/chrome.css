@@ -12,6 +12,12 @@
 .nav_cta:hover{background:var(--bike-share-gold) !important;color:var(--city-bike--ink) !important}
 .nav_cta svg{width:1rem;height:1rem}
 .hero_kicker .status_pulse{width:.45rem;height:.45rem}
+.post_media img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.post:hover .post_media img{transform:scale(1.035)}
+.post.is-feature .post_media{aspect-ratio:5/4}
+.post.is-side .post_media{aspect-ratio:1}
+.post.is-feature .post_title{font-size:clamp(1.75rem,2.6vw,2.4rem)}
+.post:hover .post_title{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
 .footer_grid h4{font-family:var(--city-bike--font-mono);font-weight:500;font-size:.6875rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;margin:0 0 1rem}
 .footer_grid a{display:block;text-decoration:none;margin-bottom:.5rem;transition:color .2s}
 .footer_grid a:hover{color:#fff}
@@ -20,9 +26,18 @@
 .footer_bottom a:hover{color:#fff}
 .appbar .appbar_tab.is-current .appbar_ico{color:var(--bike-share-gold)}
 .appbar .w-embed{display:contents}
+.post-aside img{aspect-ratio:4/3;object-fit:cover;width:100%}
+.post-aside div{padding:1.5rem}
+.post-aside h3{font-family:var(--city-bike--font-display);font-size:1.375rem;color:#fff;margin:0 0 .5rem;line-height:1.15}
+.post-aside p{font-size:.9375rem;color:#bdb8ab;margin:0 0 1.25rem}
 @media (max-width:991px){.nav_links .nav_link{display:none}}
 .nav_component.is-over-hero:not(.is-solid) .nav_logo-gold{display:none}
 .nav_component.is-over-hero:not(.is-solid) .nav_logo-white{display:block;filter:none}
+.post .post_media{aspect-ratio:4/3;border-radius:14px}
+.post:hover .post_more .arrow{transform:translateX(3px)}
+.post_more .arrow{transition:transform .2s cubic-bezier(.2,.7,.2,1)}
+.updates_grid .post{border:1px solid var(--city-bike--ink);border-radius:8px;overflow:hidden;background:#fff;gap:0}
+.updates_grid .post .post_media{border-radius:0;aspect-ratio:3/2}
 .status_track span::after{content:none}
 .status_track>.status_item::after{content:"";width:.3rem;height:.3rem;border-radius:50%;background:var(--bike-share-gold);margin:0 2.5rem}
 .status_track>.status_item{margin:0}
@@ -30,10 +45,17 @@
 .nav_component.is-on-dark .nav_logo-white{display:block;filter:none}
 .nav_component.is-on-dark .nav_cta{background:#fff;color:var(--city-bike--ink)}
 @media (max-width:767px){.is-touring .appbar{opacity:0;pointer-events:none}}
+:is(.section,.page-hero) :is(h3:not([class]),.post_title){margin-bottom:.75rem}
+:is(.section,.page-hero) :is(h3:not([class]),.post_title)+p{margin-top:0}
+.section .post_body>.post_title{margin-bottom:0}
 @media (max-width:767px){.is-docking .appbar{opacity:0;pointer-events:none}}
 .nav_logo img{max-width:none;border-radius:0}
 .footer_component img,.footer_brand img{max-width:none;border-radius:0}
 .appbar_tab.w--current{background-color:#2a2925;color:#fff}
 .appbar .appbar_tab.w--current .appbar_ico{color:var(--bike-share-gold)}
+.updates_grid>.w-dyn-item{display:flex}
+.updates_grid>.w-dyn-item>.post{flex:1}
+.updates_grid .post{color:#0d0d0c;text-decoration:none}
+body:not(:has(.hero_component)) .nav_component{background:rgba(255,255,255,.94);-webkit-backdrop-filter:saturate(1.4) blur(12px);backdrop-filter:saturate(1.4) blur(12px);color:#0d0d0c;border-color:#d9d2c3}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(88,214,141,.55)}70%{box-shadow:0 0 0 .55rem rgba(88,214,141,0)}100%{box-shadow:0 0 0 0 rgba(88,214,141,0)}}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}

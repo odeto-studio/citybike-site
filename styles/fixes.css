@@ -7,3 +7,9 @@
 /* Phone tabs on pages without site.js (Updates, CMS templates): Webflow's own w--current marks the tab instead of is-current. */
 .appbar_tab.w--current{background-color:#2a2925;color:#fff}
 .appbar .appbar_tab.w--current .appbar_ico{color:var(--bike-share-gold)}
+/* Blog cards come from the CMS on Home, Updates and the blog template (10-29). Each card fills its grid cell, and on pages without site.css the card keeps its ink text instead of Webflow's default link blue. */
+.updates_grid>.w-dyn-item{display:flex}
+.updates_grid>.w-dyn-item>.post{flex:1}
+.updates_grid .post{color:#0d0d0c;text-decoration:none}
+/* Pages without a hero (Updates, blog posts, legal, 404) don't load site.js, which is what turns the nav solid: give them the solid nav in CSS. */
+body:not(:has(.hero_component)) .nav_component{background:rgba(255,255,255,.94);-webkit-backdrop-filter:saturate(1.4) blur(12px);backdrop-filter:saturate(1.4) blur(12px);color:#0d0d0c;border-color:#d9d2c3}

@@ -181,7 +181,8 @@ def assets():
     return {pathlib.Path(r["file"]).stem: r["webflow_asset_id"] for r in rows if r["webflow_asset_id"]}
 
 
-SKIP_ATTR = {"class", "style"}
+STATE_BASE = {"data-why-tab": "why_tab", "data-fare-tab": "fare_tab"}
+SKIP_ATTR = {"class", "style", "id"}  # Webflow reserves `id`; it goes in as the domId setting
 INLINE_TAGS = {"span", "strong", "em", "b", "i", "small", "br", "a", "time", "sup", "sub", "mark", "abbr", "code"}
 
 
@@ -208,11 +209,11 @@ def schema(n, ids, report):
         s.update({"type": "Image", "set_image_asset": {"image_asset_id": aid, "alt_text": at.get("alt", "")}})
     elif tag == "video":
         mux = json.loads((HERE / "webflow" / "mux.json").read_text()).get(pathlib.Path(at.get("src", "")).stem)
-        if mux:  # islands/mux-video.js picks HLS or MP4; poster works with JS off
-            attrs += [{"name": "data-dcb-mux", "value": mux["playback_id"]}, {"name": "poster", "value": mux["poster"]}]
+        if mux:  # islands/mux-video.js picks HLS or MP4 and sets the poster (Webflow reserves `poster`)
+            attrs += [{"name": "data-dcb-mux", "value": mux["playback_id"]}]
         else:
             report.append(f"video not on Mux: {at.get('src')} (upload with tools/mux-upload.mjs)")
-        s.update({"type": "BY_CUSTOM_TAG", "custom_tag": "video"})
+        s.update({"type": "DOM", "set_dom_config": {"dom_tag": "video"}})  # BY_CUSTOM_TAG video becomes Webflow's embed Video
     elif re.fullmatch(r"h[1-6]", tag):
         s.update({"type": "Heading", "set_heading_level": {"heading_level": int(tag[1])}})
     elif tag == "p":
@@ -221,10 +222,23 @@ def schema(n, ids, report):
         href = at.get("href", "#")
         href = re.sub(r"^(index|download|sponsorship|faq|collectives|blog-post)\.html", lambda m: "/" if m.group(1) == "index" else f"/{m.group(1)}", href)
         s.update({"type": "LinkBlock", "set_link": {"link_type": "email" if href.startswith("mailto:") else "url", "link": href.replace("mailto:", "")}})
+    elif tag == "button":  # BY_CUSTOM_TAG button becomes a Webflow Button, i.e. <a href="#">
+        s.update({"type": "DOM", "set_dom_config": {"dom_tag": "button"}})
     else:
         s.update({"type": "BY_CUSTOM_TAG", "custom_tag": tag})
+    # Webflow has no standalone `is-active`/`is-current` (combo only), so a lone state class gets a base class
+    if classes and all(c in ("is-active", "is-current") for c in classes):
+        base = next((STATE_BASE[k] for k in at if k in STATE_BASE), None)
+        if base:
+            s["set_style"] = {"style_names": [base] + classes}
+    elif tag == "button" and not classes:
+        base = next((STATE_BASE[k] for k in at if k in STATE_BASE), None)
+        if base:
+            s["set_style"] = {"style_names": [base]}
     if attrs:
         s["set_attributes"] = {"attributes": attrs}
+    if at.get("id"):
+        s["settings"] = [{"key": "domId", "static_text": {"value": at["id"]}}]
     kids = n["kids"]
     texts = [k for k in kids if k["tag"] == "#text"]
     if kids and len(texts) == len(kids) and s["type"] not in ("Image",):

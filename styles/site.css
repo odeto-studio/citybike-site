@@ -9,10 +9,10 @@ a{color:inherit}
 ::selection{background:var(--bike-share-gold);color:var(--city-bike--ink)}
 :focus-visible{outline:2px solid var(--bike-share-gold);outline-offset:3px}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
-.bg-ink .display,.bg-ink .h2,.bg-ink .h3{color:#fff}
+.bg-ink .display,.bg-ink .heading-title,.bg-ink .heading-card{color:#fff}
 .bg-ink .lede{color:#cfcabd}
-.bg-ink .label{color:#a9a395}
-.label .dot{width:.5rem;height:.5rem;border-radius:50%;background:var(--bike-share-gold)}
+.bg-ink .text-label{color:#a9a395}
+.text-label .dot{width:.5rem;height:.5rem;border-radius:50%;background:var(--bike-share-gold)}
 .btn .arrow{transition:transform .2s cubic-bezier(.2,.7,.2,1)}
 .btn:hover .arrow{transform:translateX(3px)}
 .bg-ink .link-arrow:hover{color:var(--bike-share-gold)}
@@ -69,9 +69,10 @@ a{color:inherit}
 .story_photo figcaption{font-family:var(--city-bike--font-mono);font-size:.6875rem;letter-spacing:.08em;text-transform:uppercase;color:var(--city-bike--ink-3);margin-top:.8rem}
 .story_body p{margin:0 0 1.1rem;break-inside:avoid-column}
 .story_body p:first-child::first-letter{font-family:var(--city-bike--font-display);float:left;font-size:4.6rem;line-height:.82;padding:.35rem .6rem 0 0;color:var(--city-bike--ink)}
-.story_quote cite{display:block;font-family:var(--city-bike--font-mono);font-style:normal;font-size:.6875rem;letter-spacing:.08em;text-transform:uppercase;color:var(--city-bike--ink-3);margin-top:1rem}
+.story_quote cite{display:block;font-family:var(--city-bike--font-mono);font-style:normal;font-size:.6875rem;letter-spacing:.08em;text-transform:uppercase;color:var(--city-bike--ink-3);margin-top:1.25rem}
 .ruler_mark b{display:block;font-family:var(--city-bike--font-display);font-size:clamp(2.5rem,4.5vw,4rem);line-height:1}
 .ruler_mark span{color:var(--city-bike--ink-3);font-size:.9375rem}
+.faq_aside .heading-title{margin:0 0 1.75rem}
 .faq_tower img{width:100%;aspect-ratio:1;object-fit:cover;object-position:68% 50%}
 .faq_tower p{margin:0;font-size:.9375rem;color:var(--city-bike--ink-2)}
 .qa_q::-webkit-details-marker{display:none}
@@ -123,7 +124,7 @@ a{color:inherit}
 .zone li{display:grid;grid-template-columns:1.1rem 1fr;gap:.5rem}
 .zone li::before{content:"";width:.5rem;height:.5rem;margin-top:.5em;border-radius:50%;background:var(--city-bike--ink)}
 .zone .btn{margin-top:auto;align-self:flex-start}
-.collective .h3{color:#fff}
+.collective .heading-card{color:#fff}
 .faq-search input{width:100%;font:inherit;font-size:1.0625rem;padding:1rem 1.25rem 1rem 3rem;border:1px solid var(--city-bike--ink);border-radius:999px;background:#fff}
 .faq-search svg{position:absolute;left:1.1rem;top:50%;transform:translateY(-50%);width:1.2rem;height:1.2rem}
 .rich p{font-size:1.1875rem;line-height:1.7;color:var(--city-bike--ink-2);margin:0 0 1.25rem}
@@ -186,7 +187,7 @@ a{color:inherit}
 .board_row:hover .board_zone::before{background:var(--city-bike--ink) !important}
 [data-reel]{display:inline-flex}
 @media (max-width:991px){.hero_component.is-cover .hero_facts{grid-template-columns:1fr 1fr}}
-.tier.is-featured .label{color:#a9a395}
+.tier.is-featured .text-label{color:#a9a395}
 .tier.is-featured .tier_name{color:#fff}
 .tier.is-featured .tier_price{color:#fff}
 .tier.is-featured .tier_items{border-color:#2f2e2a;color:#cfcabd}
@@ -245,7 +246,7 @@ a{color:inherit}
 .post:hover .post_more .arrow{transform:translateX(3px)}
 .post_more .arrow{transition:transform .2s cubic-bezier(.2,.7,.2,1)}
 @media (max-width:991px){.fares_grid .fare{justify-self:stretch;max-width:none}}
-.why_head .h2{max-width:14ch}
+.why_head .heading-title{max-width:14ch}
 .why[data-mode=local] .why_pill{transform:translateX(100%)}
 .why_tabs button{position:relative;z-index:1;border:0;background:transparent;font:600 .9375rem var(--city-bike--font-body);padding:.8rem 1.4rem;border-radius:999px;cursor:pointer;color:var(--city-bike--ink-2);transition:color .3s;white-space:nowrap}
 .why_tabs button.is-active{color:#fff}
@@ -339,7 +340,7 @@ a{color:inherit}
 .status_track>.status_item{margin:0}
 .lc:not(.is-ink):not(.is-gold):not(.is-pale){justify-content:flex-end;min-height:15rem}
 .sponsors_row img{height:4.75rem;width:auto;max-width:30%;object-fit:contain}
-.end_top .h2{font-size:clamp(1.9rem,3.1vw,2.9rem)}
+.end_top .heading-title{font-size:clamp(1.9rem,3.1vw,2.9rem)}
 @media (max-width:991px){.sponsors_row img{height:3.5rem}}
 .lc:not(.is-ink):not(.is-gold):not(.is-pale){min-height:0;justify-content:flex-start}
 :root{--navy:#22344d}
@@ -347,7 +348,7 @@ a{color:inherit}
 .lc.is-navy .lc_big{color:#fff}
 .lc.is-navy .flag{background:rgba(255,255,255,.18);color:#fff}
 .lc.is-navy .lc_link{color:#fff}
-.appdl .h2{color:#fff;margin:0 0 1.25rem;max-width:14ch}
+.appdl .heading-title{color:#fff;margin:0 0 1.75rem;max-width:14ch}
 .appdl .lede{color:#c9d3df;max-width:30rem;margin:0 0 2rem}
 .scr b{font-family:var(--city-bike--font-display);font-size:1.25rem;color:var(--city-bike--ink);margin:.75rem 0 .25rem}
 .scr-sheet b{margin:0;font-size:1.05rem}
@@ -393,11 +394,11 @@ a{color:inherit}
 .tour_cue i{width:1px;height:2.25rem;background:linear-gradient(var(--bike-share-gold),transparent);animation:cue 1.8s cubic-bezier(.2,.7,.2,1) infinite}
 @keyframes cue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 .tour_card{-webkit-backdrop-filter:blur(16px) saturate(1.2)}
-.tour_card .h3{color:#fff;margin:0 0 .75rem}
+.tour_card .heading-card{color:#fff;margin:0 0 1.35rem}
 .tour_card p{margin:0;color:#cfcabd;font-size:1rem;line-height:1.55}
 .tour_photo img{width:100%;height:100%;object-fit:cover}
 .tour_photo .fit{width:100%;height:100%;display:block}
-.tour_outro .h2{color:#fff;margin:0 0 2rem}
+.tour_outro .heading-title{color:#fff;margin:0 0 2.75rem}
 .tour_stats div{border-top:1px solid #3a3833;padding-top:.9rem}
 .tour_stats b{display:block;font:700 clamp(2.5rem,4vw,3.5rem)/1 var(--city-bike--font-display);color:#fff}
 .tour_stats div:nth-child(2) b{color:var(--bike-share-gold)}
@@ -421,9 +422,9 @@ a{color:inherit}
 .rail.is-quiet a:hover span{opacity:1}
 @media (max-width:767px){.tour_intro .display{font-size:2.6rem;margin-bottom:1rem}}
 @media (max-width:767px){.tour_intro .lede{font-size:1.0625rem}}
-@media (max-width:767px){.tour_card .h3{grid-column:1;font-size:1.375rem;margin:0 0 .5rem;align-self:center}}
+@media (max-width:767px){.tour_card .heading-card{grid-column:1;font-size:1.375rem;margin:0 0 .75rem;align-self:center}}
 @media (max-width:767px){.tour_card p{grid-column:1 / -1;font-size:.9375rem}}
-@media (max-width:767px){.tour_outro .h2{font-size:2.1rem;margin-bottom:1.25rem}}
+@media (max-width:767px){.tour_outro .heading-title{font-size:2.1rem;margin-bottom:1.75rem}}
 @media (max-width:767px){.tour_stats b{font-size:2.25rem}}
 @media (max-width:767px){.is-touring .appbar,.is-touring .mock{opacity:0;pointer-events:none}}
 @media (max-width:767px){.show-notes .tour_note{left:clamp(1.25rem,4vw,3.5rem);right:clamp(1.25rem,4vw,3.5rem);bottom:auto;top:12rem;max-width:none}}

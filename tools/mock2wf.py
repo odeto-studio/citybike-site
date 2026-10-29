@@ -55,6 +55,11 @@ def cls(name):
     return RENAME.get(name, name)
 
 
+def rename_sel(sel):
+    """Spilled selectors (.tour_card .h3, .bg-ink .label) must name the renamed Webflow classes too, or they never match."""
+    return re.sub(r"\.([A-Za-z0-9_-]+)", lambda m: "." + cls(m.group(1)), sel)
+
+
 def sub_vars(value):
     def rep(m):
         name = m.group(1)
@@ -109,7 +114,7 @@ def parse_css():
 
 
 def take(r, bp, rules, left, wrap=None):
-    sels = [s.strip() for s in tinycss2.serialize(r.prelude).split(",")]
+    sels = [rename_sel(s.strip()) for s in tinycss2.serialize(r.prelude).split(",")]
     body = decls(r.content)
     keep = []
     for s in sels:
@@ -332,7 +337,7 @@ def cmd_styles():
     dropped = sorted({c for ch, *_ in rules for c in ch if c not in used})
     rules = [r for r in rules if all(c in used for c in r[0])]
     resolved = cascade(rules)
-    left = hosted(re.sub(r"@font-face\{[^}]*\}\n?", "", left))
+    left = rename_sel(hosted(re.sub(r"@font-face\{[^}]*\}\n?", "", left)))  # other @media / @supports blocks too
     # Webflow wraps every code embed in div.w-embed; on rebuilt pages the wrapper must not take part in layout, so the
     # svg inside sits in the grid/flex exactly as in the mockup (the class lives on the svg, not the wrapper).
     left = "main .w-embed,.end_component .w-embed,.nav_component .w-embed{display:contents}\n" + left

@@ -16,3 +16,6 @@ body:not(:has(.hero_component)) .nav_component{background:rgba(255,255,255,.94);
 /* The live site styles every h3 ocean blue and every img max-width:50%: the card title and photo opt out on every page. */
 .updates_grid .post_title{color:#0d0d0c}
 .updates_grid .post_media img{max-width:100%;width:100%;height:100%;object-fit:cover;border-radius:0}
+/* Related posts on a blog post: the list pulls 4 (Webflow can't exclude the current item), the post you're on is hidden, and if it isn't among them the 4th goes, so three always show. Home and Updates never have a current card. */
+.section_blog-post4-content~.section .updates_grid>.w-dyn-item:has(.post[aria-current="page"]){display:none}
+.section_blog-post4-content~.section .updates_grid:not(:has(.post[aria-current="page"]))>.w-dyn-item:nth-child(4){display:none}

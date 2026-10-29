@@ -166,6 +166,16 @@ SVG_CASE = {k.lower(): k for k in ("viewBox", "preserveAspectRatio", "gradientUn
 SVG_TAGS = {"lineargradient": "linearGradient", "radialgradient": "radialGradient", "clippath": "clipPath", "textpath": "textPath", "foreignobject": "foreignObject"}
 
 
+def hosted(text):
+    """Swap mockup image paths (../mockup/img/x.png, ../mockup-v3/img/x.webp) for the uploaded asset's Webflow CDN URL."""
+    urls = json.loads((HERE / "webflow" / "asset-urls.json").read_text())
+
+    def rep(m):
+        hit = urls.get(pathlib.Path(m.group(0)).stem)
+        return hit["url"] if hit else m.group(0)
+    return re.sub(r"(?:\.\./)+mockup[\w-]*/[\w/.-]+\.(?:png|jpe?g|webp|svg|gif)", rep, text)
+
+
 def outer(n):
     if n["tag"] == "#text":
         return html.escape(n["text"], quote=False)
@@ -196,16 +206,16 @@ def schema(n, ids, report):
     classes = [cls(c) for c in (at.get("class") or "").split() if c]
     if classes:
         s["set_style"] = {"style_names": classes}
-    attrs = [{"name": k, "value": v or ""} for k, v in at.items() if k not in SKIP_ATTR and not (tag == "a" and k == "href")
+    attrs = [{"name": k, "value": hosted(v or "")} for k, v in at.items() if k not in SKIP_ATTR and not (tag == "a" and k == "href")
              and not (tag == "img" and k in ("src", "alt")) and not (tag == "video" and k in ("src", "poster", "autoplay", "muted", "loop", "playsinline", "controls"))]
     if tag == "svg":
-        return {"type": "HtmlEmbed", "settings": [{"key": "code", "static_text": {"value": outer(n)}}], **({"set_style": s["set_style"]} if classes else {})}
+        return {"type": "HtmlEmbed", "settings": [{"key": "code", "static_text": {"value": hosted(outer(n))}}]}  # the svg keeps its own class
     if tag == "img":
         src = pathlib.Path(at.get("src", "")).stem
         aid = ids.get(src)
         if not aid:
             report.append(f"no asset id for img {at.get('src')}")
-            return {"type": "HtmlEmbed", "settings": [{"key": "code", "static_text": {"value": outer(n)}}]}
+            return {"type": "HtmlEmbed", "settings": [{"key": "code", "static_text": {"value": hosted(outer(n))}}]}
         s.update({"type": "Image", "set_image_asset": {"image_asset_id": aid, "alt_text": at.get("alt", "")}})
     elif tag == "video":
         mux = json.loads((HERE / "webflow" / "mux.json").read_text()).get(pathlib.Path(at.get("src", "")).stem)
@@ -273,6 +283,9 @@ def cmd_styles():
     dropped = sorted({c for ch, *_ in rules for c in ch if c not in used})
     rules = [r for r in rules if all(c in used for c in r[0])]
     left = re.sub(r"@font-face\{[^}]*\}\n?", "", left)
+    # Webflow wraps every code embed in div.w-embed; on rebuilt pages the wrapper must not take part in layout, so the
+    # svg inside sits in the grid/flex exactly as in the mockup (the class lives on the svg, not the wrapper).
+    left = "main .w-embed,.end_component .w-embed,.nav_component .w-embed{display:contents}\n" + left
     order, props = [], {}
     for chain, pseudo, bp, body in rules:
         for i in range(1, len(chain) + 1):

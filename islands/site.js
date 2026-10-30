@@ -489,18 +489,18 @@ if (window.ScrollTrigger) { ScrollTrigger.sort(); ScrollTrigger.refresh(); }
     dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); }); // backdrop
     dlg.addEventListener("close", function () { vid.pause(); vid.removeAttribute("src"); vid.load(); });
   }
+  function play() { var p = vid.play(); if (p && p.catch) p.catch(function () {}); }
   btns.forEach(function (b) {
     b.addEventListener("click", function (e) {
       e.preventDefault();
       var id = b.getAttribute("data-dcb-film");
       if (!dlg) build();
       vid.poster = "https://image.mux.com/" + id + "/thumbnail.webp?time=4&width=1280";
-      vid.src = vid.canPlayType("application/vnd.apple.mpegurl")
-        ? "https://stream.mux.com/" + id + ".m3u8"
-        : "https://stream.mux.com/" + id + "/" + (window.innerWidth < 768 ? "480p" : "720p") + ".mp4";
+      var mp4 = "https://stream.mux.com/" + id + "/" + (window.innerWidth < 768 ? "480p" : "720p") + ".mp4";
+      vid.onerror = function () { if (vid.getAttribute("src") && vid.src !== mp4) { vid.src = mp4; play(); } }; // Chrome says "maybe" to HLS, then fails it
+      vid.src = vid.canPlayType("application/vnd.apple.mpegurl") ? "https://stream.mux.com/" + id + ".m3u8" : mp4;
       dlg.showModal();
-      var p = vid.play();
-      if (p && p.catch) p.catch(function () {});
+      play();
     });
   });
 })();
@@ -842,7 +842,7 @@ window.APPSIM_ROUTES = {"0":{"to":7,"min":12,"km":2.7,"pts":[[41.13,42.57],[40.8
 
 /* ---- mux-video.js ---- */
 // Island: data-dcb-mux="<playback id>" on a muted <video> (Webflow custom element). Safari plays Mux HLS natively;
-// other browsers get a static MP4: 480p on phones, tablets and Save-Data, 720p on large screens. No hls.js.
+// other browsers (and any browser whose HLS fails) get a static MP4: 480p on phones, tablets and Save-Data, 720p on large screens. No hls.js.
 // Reduced motion: no autoplay, the poster stays. JS off: no src, the poster stays. Playback ids: webflow/mux.json.
 (function () {
   var vids = document.querySelectorAll("video[data-dcb-mux]");
@@ -860,10 +860,11 @@ window.APPSIM_ROUTES = {"0":{"to":7,"min":12,"km":2.7,"pts":[[41.13,42.57],[40.8
     v.autoplay = true;
     v.playsInline = true;
     v.setAttribute("playsinline", "");
-    v.src = v.canPlayType("application/vnd.apple.mpegurl")
-      ? "https://stream.mux.com/" + id + ".m3u8"
-      : "https://stream.mux.com/" + id + "/" + (small ? "480p" : "720p") + ".mp4";
-    var p = v.play();
-    if (p && p.catch) p.catch(function () {});
+    var mp4 = "https://stream.mux.com/" + id + "/" + (small ? "480p" : "720p") + ".mp4";
+    var play = function () { var p = v.play(); if (p && p.catch) p.catch(function () {}); };
+    // Chrome now answers "maybe" for HLS and then fails the stream (MEDIA_ERR_SRC_NOT_SUPPORTED): fall back to the MP4 on any error
+    v.addEventListener("error", function () { if (v.src !== mp4) { v.src = mp4; play(); } });
+    v.src = v.canPlayType("application/vnd.apple.mpegurl") ? "https://stream.mux.com/" + id + ".m3u8" : mp4;
+    play();
   });
 })();

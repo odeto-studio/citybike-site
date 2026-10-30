@@ -62,9 +62,26 @@ body:not(:has(.hero_component)) .nav_component{background:rgba(255,255,255,.94);
 .section_blog-post4-content~.section .updates_grid>.w-dyn-item:has(.post[aria-current="page"]){display:none}
 .section_blog-post4-content~.section .updates_grid:not(:has(.post[aria-current="page"]))>.w-dyn-item:nth-child(4){display:none}
 .footer_component a{color:inherit}
-.rich-text-section h1{color:var(--city-bike--ink);font-size:clamp(2.25rem,1.6rem + 3vw,4rem);line-height:1.02}
-.rich-text-section h2{color:var(--city-bike--ink);font-size:clamp(1.375rem,1.1rem + 1vw,1.875rem);line-height:1.15;margin:2.5rem 0 .75rem}
-.rich-text-section h3{color:var(--city-bike--ink);font-size:1.125rem;line-height:1.3;margin:1.75rem 0 .5rem}
-.rich-text-section .w-richtext{max-width:46rem}
+.rich-text-section{background:#fff;color:var(--city-bike--ink-2);font-family:var(--city-bike--font-body)}
+.rich-text-section .padding-section-large{padding-top:clamp(2.5rem,6vw,5rem);padding-bottom:clamp(3.5rem,8vw,7rem)}
+.rich-text-section .content-wrapper{max-width:46rem;margin-left:auto;margin-right:auto}
+.rich-text-section .content-wrapper>.margin-bottom:first-child{margin-bottom:1rem}
+.rich-text-section .content-wrapper>.margin-bottom:first-child::before{content:"Drifters City Bike Share · Legal";display:block;margin-bottom:1rem;font-family:var(--city-bike--font-mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--city-bike--gold-deep)}
+.rich-text-section h1{font-family:var(--city-bike--font-display);font-weight:700;color:var(--city-bike--ink);font-size:clamp(2.5rem,1.7rem + 3.4vw,4.5rem);line-height:.98;letter-spacing:-.012em;margin:0}
+.rich-text-section .published-date{display:flex;gap:.45em;padding:0 0 1.5rem;border-bottom:1px solid var(--city-bike--line);margin-bottom:1.75rem}
+.rich-text-section .published-date>div{font-family:var(--city-bike--font-mono);font-style:normal;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--city-bike--ink-3)}
+.rich-text-section .w-richtext{font-size:1.0625rem;line-height:1.7;color:var(--city-bike--ink-2)}
+.rich-text-section .w-richtext>p:first-child{margin-top:0}
+.rich-text-section .w-richtext>p:first-child strong{display:inline-block;font-family:var(--city-bike--font-mono);font-weight:500;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--city-bike--ink);background:var(--city-bike--paper,#f4f0e7);border:1px solid var(--city-bike--line);border-radius:999px;padding:.35rem .8rem}
+.rich-text-section .w-richtext h2{font-family:var(--city-bike--font-display);font-weight:700;color:var(--city-bike--ink);font-size:clamp(1.5rem,1.2rem + 1.1vw,2.125rem);line-height:1.1;margin:2.25rem 0 .85rem;padding-top:1.75rem;border-top:1px solid var(--city-bike--line)}
+.rich-text-section .w-richtext h3{font-family:var(--city-bike--font-body);font-weight:600;color:var(--city-bike--ink);font-size:1.125rem;line-height:1.35;margin:1.75rem 0 .5rem}
+.rich-text-section .w-richtext p{margin:0 0 1rem}
+.rich-text-section .w-richtext strong{color:var(--city-bike--ink);font-weight:600}
+.rich-text-section .w-richtext ul{padding-left:1.25rem;margin:0 0 1.25rem}
+.rich-text-section .w-richtext li{margin-bottom:.45rem;padding-left:.25rem}
+.rich-text-section .w-richtext li::marker{color:var(--bike-share-gold)}
+.rich-text-section .w-richtext a{color:var(--city-bike--ink);text-decoration:underline;text-decoration-color:var(--bike-share-gold);text-decoration-thickness:1.5px;text-underline-offset:.2em;transition:color .2s}
+.rich-text-section .w-richtext a:hover{color:var(--city-bike--gold-deep)}
+.rich-text-section .w-richtext>p:last-child{background:var(--city-bike--paper,#f4f0e7);border-radius:12px;padding:1.25rem 1.5rem;line-height:1.6}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(88,214,141,.55)}70%{box-shadow:0 0 0 .55rem rgba(88,214,141,0)}100%{box-shadow:0 0 0 0 rgba(88,214,141,0)}}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}

@@ -623,3 +623,8 @@ body:not(:has(.hero_component)) .nav_component{background:rgba(255,255,255,.94);
 .footer_component a{color:inherit}
 /* Collectives cards come from the List of Collectives CMS (10-29 round 4): the list wrapper and list (both .coll_cms) step aside so each item is a cell of .coll_grid next to the intro. */
 .coll_grid .coll_cms{display:contents}
+/* Legal pages (CMS template, .rich-text-section, no site.css): the Rentals-era ocean-blue display headings ran huge, worst on phones (10-30). City Bike ink and a reading scale. */
+.rich-text-section h1{color:var(--city-bike--ink);font-size:clamp(2.25rem,1.6rem + 3vw,4rem);line-height:1.02}
+.rich-text-section h2{color:var(--city-bike--ink);font-size:clamp(1.375rem,1.1rem + 1vw,1.875rem);line-height:1.15;margin:2.5rem 0 .75rem}
+.rich-text-section h3{color:var(--city-bike--ink);font-size:1.125rem;line-height:1.3;margin:1.75rem 0 .5rem}
+.rich-text-section .w-richtext{max-width:46rem}

@@ -56,7 +56,7 @@ def pick(nodes, cls):
     return next(n for n in nodes if cls in (n["attrs"].get("class") or "").split())
 
 
-CHROME = re.compile(r"\.(site-header|status_|nav_|appbar|footer_|updates_|post\b|post_)")  # blog cards render on pages without site.css (Updates, blog template)
+CHROME = re.compile(r"\.(site-header|status_|nav_|appbar|footer_|updates_|post\b|post_|rich-text-section)")  # blog cards and the legal template render on pages without site.css (Updates, blog template, legal pages)
 
 
 def chrome_css():

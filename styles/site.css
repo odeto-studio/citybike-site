@@ -621,3 +621,5 @@ body:not(:has(.hero_component)) .nav_component{background:rgba(255,255,255,.94);
 .section_blog-post4-content~.section .updates_grid:not(:has(.post[aria-current="page"]))>.w-dyn-item:nth-child(4){display:none}
 /* Footer links on pages without site.css (Updates, blog posts, legal, 404) took the live black link colour on the navy footer and looked missing (Chris 10-29). */
 .footer_component a{color:inherit}
+/* Collectives cards come from the List of Collectives CMS (10-29 round 4): the list wrapper and list (both .coll_cms) step aside so each item is a cell of .coll_grid next to the intro. */
+.coll_grid .coll_cms{display:contents}

@@ -10,3 +10,4 @@ The approved mockup JS ships as one bundle (`tools/port-js.py` -> `islands/site.
 | `gsap` | 3.12.5 | GSAP core (cdnjs) | sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt | home, download (footer, before dcbsite) | 2026-10-29 |
 | `gsapscrolltrigger` | 3.12.5 | ScrollTrigger (cdnjs) | sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d | home, download (footer, after gsap) | 2026-10-29 |
 | `dcbsite` | 1.0.0 | `islands/site.js` @ 4ce4d99 (v2 + v3 + appsim + app-link + mux-video) | sha384-cmGvdMuai1+60RU0E473rm6xEnhvA333cHLKnQUVg3vWnQHk1tj8QuWxHywXSSLn | all rebuilt pages (footer, last) | 2026-10-29 |
+| `dcbsite` | 1.0.6 | `islands/site.js` @ 2f9cd7f (Sponsorship hero film on Mux: muted loop + on-page player; Collectives cards for the CMS list) | sha384-8TDn+0I2Kp5xN/CKaCtrsx5XBO2fWtaMiP/CRXZwpFqhBCM2BXjKSx7iU4ktGYjG | home, download, sponsorship, collectives, faq (footer, last) | 2026-10-29 |

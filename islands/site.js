@@ -471,6 +471,40 @@ if (window.ScrollTrigger) { ScrollTrigger.sort(); ScrollTrigger.refresh(); }
   });
 })();
 
+
+// Film player: [data-dcb-film="<Mux playback id>"] opens the full film in a dialog on the page, with sound and controls (Sponsorship hero).
+// Safari plays Mux HLS natively; other browsers get the 720p MP4 (480p on phones). Closing stops and unloads it.
+(function () {
+  var btns = document.querySelectorAll("[data-dcb-film]");
+  if (!btns.length) return;
+  var dlg, vid;
+  function build() {
+    dlg = document.createElement("dialog");
+    dlg.className = "film_modal";
+    dlg.setAttribute("aria-label", "Film");
+    dlg.innerHTML = '<button type="button" class="film_close" aria-label="Close the film">×</button><video controls playsinline preload="none"></video>';
+    document.body.appendChild(dlg);
+    vid = dlg.querySelector("video");
+    dlg.querySelector(".film_close").addEventListener("click", function () { dlg.close(); });
+    dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); }); // backdrop
+    dlg.addEventListener("close", function () { vid.pause(); vid.removeAttribute("src"); vid.load(); });
+  }
+  btns.forEach(function (b) {
+    b.addEventListener("click", function (e) {
+      e.preventDefault();
+      var id = b.getAttribute("data-dcb-film");
+      if (!dlg) build();
+      vid.poster = "https://image.mux.com/" + id + "/thumbnail.webp?time=4&width=1280";
+      vid.src = vid.canPlayType("application/vnd.apple.mpegurl")
+        ? "https://stream.mux.com/" + id + ".m3u8"
+        : "https://stream.mux.com/" + id + "/" + (window.innerWidth < 768 ? "480p" : "720p") + ".mp4";
+      dlg.showModal();
+      var p = vid.play();
+      if (p && p.catch) p.catch(function () {});
+    });
+  });
+})();
+
 /* ---- v3.js ---- */
 // Mockup v3 (Showcase) behavior, on top of v2.js. In Webflow: one hosted script keyed off data-tour / data-rail.
 

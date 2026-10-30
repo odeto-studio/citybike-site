@@ -10,5 +10,29 @@
     "poster": "https://image.mux.com/UA3pkhp7Z6X7URIHjW7I1OApB01VqxfdAzgcs5sDMJCE/thumbnail.webp?time=0&width=720",
     "uploaded": "2026-10-29T18:55:28.892Z",
     "mp4_small": "https://stream.mux.com/UA3pkhp7Z6X7URIHjW7I1OApB01VqxfdAzgcs5sDMJCE/480p.mp4"
+  },
+  "sponsor-loop": {
+    "slug": "sponsor-loop",
+    "asset_id": "Q71d8gW1RRc3mEh9f68MKXyk8sM02Mj8KqiTAsvLDd3E",
+    "playback_id": "ngImd2VtNc58wuCJtNbaDa3ORtLin01JW00wCxT8oeI28",
+    "duration": 21.333333,
+    "aspect_ratio": "16:9",
+    "hls": "https://stream.mux.com/ngImd2VtNc58wuCJtNbaDa3ORtLin01JW00wCxT8oeI28.m3u8",
+    "mp4": "https://stream.mux.com/ngImd2VtNc58wuCJtNbaDa3ORtLin01JW00wCxT8oeI28/720p.mp4",
+    "poster": "https://image.mux.com/ngImd2VtNc58wuCJtNbaDa3ORtLin01JW00wCxT8oeI28/thumbnail.webp?time=0&width=1080",
+    "uploaded": "2026-10-30T00:58:16.553Z",
+    "mp4_small": "https://stream.mux.com/ngImd2VtNc58wuCJtNbaDa3ORtLin01JW00wCxT8oeI28/480p.mp4"
+  },
+  "sponsor-film": {
+    "slug": "sponsor-film",
+    "asset_id": "nKTegfVMIC1KV43tA557a1tjrTpDYpeeYbTzcrGx3n8",
+    "playback_id": "KrlNfP62SI01MnYvkDxf37qdGKyF6YdsVs02PtUyGoWnU",
+    "duration": 131.041667,
+    "aspect_ratio": "16:9",
+    "hls": "https://stream.mux.com/KrlNfP62SI01MnYvkDxf37qdGKyF6YdsVs02PtUyGoWnU.m3u8",
+    "mp4": "https://stream.mux.com/KrlNfP62SI01MnYvkDxf37qdGKyF6YdsVs02PtUyGoWnU/720p.mp4",
+    "poster": "https://image.mux.com/KrlNfP62SI01MnYvkDxf37qdGKyF6YdsVs02PtUyGoWnU/thumbnail.webp?time=0&width=1080",
+    "uploaded": "2026-10-30T00:59:23.339Z",
+    "mp4_small": "https://stream.mux.com/KrlNfP62SI01MnYvkDxf37qdGKyF6YdsVs02PtUyGoWnU/480p.mp4"
   }
 }

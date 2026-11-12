@@ -12,7 +12,8 @@ import mock2wf as m
 
 LINKS = {"/blog-post": "/updates"}
 FOOTER_HREF = {"Privacy": "/legal-pages/privacy-policy", "Terms": "/legal-pages/terms-of-service",
-               "Cookies": "/legal-pages/cookie-consent-policy", "In the press": "/in-the-press"}
+               "Cookies": "/legal-pages/cookie-consent-policy", "App privacy": "/legal-pages/app-privacy-policy",
+               "In the press": "/in-the-press"}
 
 
 def body_nodes():

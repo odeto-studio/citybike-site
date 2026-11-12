@@ -7,7 +7,8 @@ import { fileURLToPath } from "node:url";
 import { wf } from "./wf.mjs";
 
 const COLLECTION = "676f05e19f0c2d276a11bccb"; // Legal Pages
-const ITEMS = { "privacy-policy": "676f05e19f0c2d276a11bd31", "terms-of-service": "676f05e19f0c2d276a11bd32", "cookie-consent-policy": "676f05e19f0c2d276a11bd33" };
+const ITEMS = { "privacy-policy": "676f05e19f0c2d276a11bd31", "terms-of-service": "676f05e19f0c2d276a11bd32", "cookie-consent-policy": "676f05e19f0c2d276a11bd33",
+  "app-privacy-policy": "6af5fbe2c77b0c7bff567457" }; // app policy: Movatic's copy for the Google Play review (Ian 2026-11-12)
 const DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../../projects/launch-site/working/legal");
 const DRY = process.argv.includes("--dry");
 
